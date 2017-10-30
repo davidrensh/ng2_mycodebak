@@ -1,0 +1,39 @@
+<div fxFlexAlign="center" fxLayout="column" [style.height.px]="450" fxLayoutAlign="center center">
+    <md-card [style.width.px]="335" [style.height.px]="300">
+        <md-card-title fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>Transaction</span></md-card-title>
+        <md-card-content>
+            <div fxLayout="column" fxLayoutAlign="space-around center">
+                <md-input-container>
+                    <input #maininput mdInput (keyup.delete)="changeInput()" (keypress)="changeInput()" (focusout)="lostFocus($event)" required [(ngModel)]="phoneemail" [formControl]="phoneemailFC" name="phoneemail" placeholder="Member's Phone or Email">
+                    <md-error *ngIf="phoneemailFC.hasError('pattern')">
+                        Please enter a valid phone or email
+                    </md-error>
+                    <md-error *ngIf="phoneemailFC.hasError('required')">
+                        Phone or Email is <strong>required</strong>
+                    </md-error>
+                </md-input-container>
+                <md-chip-list *ngIf="memberInfoList" fxLayout="row" fxLayoutAlign="space-around center">
+                    <md-chip style="width:138px;line-height:24px;height:24px;padding:0 0 0 6px" *ngFor="let chipColor of memberInfoList" selected="true" [style.background]="chipColor.color">
+                        {{chipColor.name}}
+                    </md-chip>
+                </md-chip-list>
+                <md-error>
+                    {{errMsg}}
+                </md-error>
+                <md-input-container>
+                    <input style="width:170px" mdInput required (focus)="onFocus($event)" (keyup.enter)="exSubmit(maininput)" [(ngModel)]="amount" name="amount" placeholder="{{amountHints}}">
+                    <md-error *ngIf="amount > 200">
+                        Warning: total amount > <strong>200</strong>
+                    </md-error>
+                </md-input-container>
+                <input style="width:170px" mdInput [(ngModel)]="comment" name="comment" (keyup.enter)="exSubmit(maininput)" placeholder="Receipt Number or Comment">
+                <button *ngIf="memberInfoList && phoneemailFC.valid &&  amount > -1 && !(!validMember  && transType === 0)" color="primary" md-raised-button (click)="submit(maininput)">Submit</button>
+                <md-select (ngModelChange)="changeTransType($event)" [(ngModel)]="transType" name="transType">
+                    <md-option *ngFor="let s of transTypes" [value]="s.value">
+                        {{s.viewValue}}
+                    </md-option>
+                </md-select>
+            </div>
+        </md-card-content>
+    </md-card>
+</div>

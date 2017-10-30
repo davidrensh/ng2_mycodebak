@@ -1,0 +1,44 @@
+<md-sidenav-layout>
+  <md-sidenav #start mode="over">
+    <div *ngIf="isLogin">
+      <div *ngFor="let m of menuMain | async">
+        <a md-button color="accent" (click)="setSub(m.$key)">{{m.$key.substring(1)}} 
+            <md-icon *ngIf="currentBar === m.$key" fontSet="fontawesome"  class="fa" fontIcon="fa-minus" style="font-size:12px;"></md-icon>
+            <md-icon fontSet="fontawesome" *ngIf="currentBar !== m.$key"  class="fa" fontIcon="fa-plus" style="font-size:12px;"></md-icon>  </a>
+        <br>
+        <div *ngIf="currentBar === m.$key">
+          <div *ngFor="let mm of menuSub| async">
+            <a [routerLink]="['/' + mm.name.replace(' ','').toLowerCase()]" md-button color="primary" style="text-align: left" (click)="start.toggle(); selectedMenu=mm.name;">
+             &nbsp;&nbsp;{{mm.name}}
+             </a><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </md-sidenav>
+
+
+  <nav class="navbar  navbar-light bg-faded">
+    <div class="pull-left">
+      <label class="fa fa-bars btn-success-outline" (click)="start.toggle()"></label>
+    </div>
+
+    <div class="form-inline pull-right">
+      <div *ngIf="!isLogin">
+        <input required placeholder="User name" style="width: 100px" [(ngModel)]="userName">
+        <input type="password" style="width: 100px" required placeholder="Password" [(ngModel)]="password">
+        <button class="btn btn-success-outline btn-sm" (click)="isLogin = true">Go</button>
+      </div>
+      <div *ngIf="isLogin">
+        <span class="fa fa-user"></span>
+        <button class="btn btn-success-outline btn-sm" (click)="isLogin = false">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+
+  <md-card class="demo-card">
+    <h3>{{selectedMenu}}</h3>  
+    <router-outlet></router-outlet>
+  </md-card>
+</md-sidenav-layout>

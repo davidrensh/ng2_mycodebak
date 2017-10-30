@@ -1,0 +1,29 @@
+<div fxFlexAlign="center" fxLayout="column" [style.height.px]="450" fxLayoutAlign="center center">
+    <md-card [style.width.px]="250" [style.height.px]="300">
+        <md-card-title fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>ExReward Login</span></md-card-title>
+        <md-card-content>
+            <form class="login-form" fxLayout="column" fxLayoutAlign="space-around center">
+                <md-input-container>
+                    <input mdInput required [(ngModel)]="phoneemail" name="phoneemail" placeholder="Phone or Email">
+                </md-input-container>
+                <md-input-container *ngIf="isEmail() || !!confirmationResult">
+                    <input mdInput required (keyup.enter)="login()" type="password" [(ngModel)]="password" name="password" placeholder="Password">
+                </md-input-container>
+                <div id="recaptcha-container" data-size="invisible"></div>
+            </form>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <button md-button (click)="forget()">Forget password?</button></div>
+            <span *ngIf='errmsg' [style.color]="'red'"> {{errmsg}}</span>
+        </md-card-content>
+        <md-card-actions>
+            <!--<div md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">-->
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <button *ngIf="!(confirmationResult && !isEmail() && !isRegister)" color="primary" md-raised-button (click)="login()">NEXT</button>
+                <button *ngIf="!!confirmationResult" color="primary" md-raised-button (click)="verify()">Verify</button>
+            </div>
+        </md-card-actions>
+    </md-card>
+</div>
+<!-- <div *ngIf="isLoggedin">
+    <button color="primary" md-raised-button (click)="logout()">Logout</button>
+</div> -->

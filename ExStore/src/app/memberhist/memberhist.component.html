@@ -1,0 +1,74 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>Member history for {{store}}</h2>
+    <md-toolbar fxLayout="row" fxLayoutAlign="center center" *ngIf="memberInfoList" style="width:538px;font-size:14px;line-height:28px;height:28px;padding:0px;margin:4px;background-color:#e8eaf6" class="mat-elevation-z5" color="">
+        <div *ngFor="let chipColor of memberInfoList" selected="true" [style.color]="chipColor.color">
+            {{chipColor.name}}&nbsp;
+        </div>
+    </md-toolbar>
+    <!-- <md-chip-list *ngIf="memberInfoList" fxLayout="row" fxLayoutAlign="space-around center">
+        <md-chip style="width:138px;line-height:24px;height:24px;padding:0 0 0 6px" *ngFor="let chipColor of memberInfoList" selected="true" [style.background]="chipColor.color">
+            {{chipColor.name}}
+        </md-chip>
+    </md-chip-list> -->
+    <!-- <div *ngIf="memberInfoList" fxLayout="row" fxLayoutAlign="start center">
+        <md-card style="line-height:30px;height:30px;padding:3px;margin:4px" *ngFor="let chipColor of memberInfoList" [style.background]="chipColor.color">
+            {{chipColor.name}}
+        </md-card>
+    </div> -->
+    <div>
+        <table fxHide.xs="true" fxHide.sm="true" mdSort (mdSortChange)="sortData($event)">
+            <tbody style="height:260px">
+                <tr>
+                    <!-- <th md-sort-header="e">Member ID </th> -->
+                    <th md-sort-header="i">Invoice total</th>
+                    <th md-sort-header="t">Type </th>
+                    <th md-sort-header="a">Changed Ps </th>
+                    <th md-sort-header="b">Balance Ps </th>
+                    <th md-sort-header="n">Employee </th>
+                    <th md-sort-header="l">Location </th>
+                    <th md-sort-header="$key">Datetime </th>
+                </tr>
+                <tr *ngFor="let o of data">
+                    <!-- <td>{{toEmail(o.e)}}</td> -->
+                    <td style="text-align: right;">{{o.i}}</td>
+                    <td>{{getTransType(o.t)}}</td>
+                    <td style="text-align: right;">{{o.a}}</td>
+                    <td style="text-align: right;">{{o.b}}</td>
+                    <td>{{o.n}}</td>
+                    <td>{{o.l}}</td>
+                    <td>{{getDTString(o.$key)}}</td>
+                </tr>
+                <tr>
+                    <th style="text-align: right;">Total$: {{total$}}</th>
+                    <th style="text-align: right;">Count: {{totalCount}}</th>
+                </tr>
+            </tbody>
+        </table>
+        <table fxHide.xl="true" fxHide.lg="true" fxHide.md="true" mdSort (mdSortChange)="sortData($event)">
+            <tbody style="height:260px">
+                <tr>
+                    <!-- <th md-sort-header="e">Member ID </th> -->
+                    <th md-sort-header="i">Invoice total</th>
+                    <!-- <th md-sort-header="t">Type </th> -->
+                    <th md-sort-header="a">Points</th>
+                    <!-- <th md-sort-header="b">Balance Ps </th> -->
+                    <th md-sort-header="l">Location </th>
+                    <th md-sort-header="$key">Datetime </th>
+                </tr>
+                <tr *ngFor="let o of data">
+                    <!-- <td>{{toEmail(o.e)}}</td> -->
+                    <td style="text-align: right;">{{o.i}}-{{getTransType(o.t)}}</td>
+                    <td style="text-align: right;">{{o.a}}/{{o.b}}</td>
+                    <td>{{o.l}}{{o.n}}</td>
+                    <td>{{getDTString(o.$key)}}</td>
+                </tr>
+                <tr>
+                    <th style="text-align: right;">Total$: {{total$}}</th>
+                    <th style="text-align: right;">Count: {{totalCount}}</th>
+                </tr>
+            </tbody>
+        </table>
+        <md-paginator style="height:30px;padding:2px;margin:0px" *ngIf="data" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[10, 25, 50, 100]" (page)="pageChange($event)">
+        </md-paginator>
+    </div>
+</div>

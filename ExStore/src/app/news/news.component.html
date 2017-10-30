@@ -1,0 +1,86 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>News Management</h2>
+    <md-tab-group>
+        <md-tab label="Edit news">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <md-input-container>
+                        <input mdInput required [(ngModel)]="title" name="title" placeholder="Title">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput required [(ngModel)]="location" name="location" placeholder="Location">
+                    </md-input-container>
+                    <md-input-container>
+                        <textarea rows="2" cols="50" mdInput required [(ngModel)]="shortDes" name="shortDes" placeholder="Short Description"></textarea>
+                    </md-input-container>
+                    <md-input-container>
+                        <textarea rows="5" cols="50" mdInput required [(ngModel)]="des" name="des" placeholder="Description (text/html)"></textarea>
+                    </md-input-container>
+                </div>
+                <button *ngIf="title && location && shortDes && des" color="primary" md-raised-button (click)="save()">Send News</button>
+            </div>
+        </md-tab>
+        <md-tab label="Preview">
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <div style="width:500px;border:1px solid darkgray;">
+                    <div fxLayout="row" fxLayoutAlign="space-around end">
+                        <span style="font-size:25px">{{title}}</span>&nbsp;
+                        <div fxLayout="row">
+                            <span style="font-size:14px">{{location}} ({{store}})</span>&nbsp;
+                            <!-- <md-icon color="accent" class="fa fa-heart fa-lg"></md-icon>&nbsp;
+                            <md-icon color="primary" class="fa fa-share fa-lg"></md-icon> -->
+                        </div>
+                    </div>
+                    <div>{{shortDes}}
+                        <md-icon color="warn" (click)="more = !more">{{!more ? 'add' : 'remove'}}</md-icon>
+                        <div *ngIf="more && isHtml()" [innerHtml]="des | safeHtml"></div>
+                        <div *ngIf="more && !isHtml()">{{des}}</div>
+                    </div>
+                    &nbsp;
+                </div>
+                <md-divider md-inset style="width:500px;border-width: 1px;border-style:inset;"></md-divider>
+                <div style="width:500px;border:1px solid darkgray;">
+                    <div fxLayout="row" fxLayoutAlign="space-around end">
+                        <span style="font-size:25px">Other news title</span>&nbsp;
+                        <div fxLayout="row">
+                            <span style="font-size:14px">City center (SPASATION)</span>&nbsp;
+                            <!-- <md-icon color="accent" class="fa fa-heart fa-lg"></md-icon>&nbsp;
+                            <md-icon color="primary" class="fa fa-share fa-lg"></md-icon> -->
+                        </div>
+                    </div>
+                    <div>Celerbrate 150th canada anniversary
+                        <md-icon color="warn" (click)="more2 = !more2">{{!more2 ? 'add' : 'remove'}}</md-icon>
+                        <div *ngIf="more2">This is an example news section. This is an example news section.This is an example news section.This is an example news section.
+                        </div>
+                    </div>
+                </div>
+                &nbsp;
+                <button *ngIf="title && location && shortDes && des" color="primary" md-raised-button (click)="save()">Send News</button>
+            </div>
+        </md-tab>
+        <md-tab label="History">
+            <table *ngIf="hist" mdSort (mdSortChange)="sortData($event)">
+                <tbody style="height:260px">
+                    <tr>
+                        <th md-sort-header="title">Title</th>
+                        <th md-sort-header="location">Location</th>
+                        <!-- <th md-sort-header="short">Short description</th> -->
+                        <th md-sort-header="publishedby">published By</th>
+                        <th md-sort-header="$key">Datetime </th>
+                    </tr>
+
+                    <tr *ngFor="let o of hist |async">
+                        <td style="width:100px; word-wrap:break-word;">{{o.title}}</td>
+                        <td>{{o.location}}</td>
+                        <!-- <td style="width:100px; word-wrap:break-word;">{{o.short}}</td> -->
+                        <td>{{o.publishedby}}</td>
+                        <td>{{getDTString(o.$key)}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Total news: {{(hist | async)?.length}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </md-tab>
+    </md-tab-group>
+</div>

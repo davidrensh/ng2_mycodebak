@@ -1,0 +1,121 @@
+<div fxLayout="column" [style.height.px]="450" fxLayoutAlign="start center">
+    <h2 style='color:darkgoldenrod;'>Employee setup</h2>
+    <div fxLayout="row" fxLayoutAlign="center start">
+        <table mdSort (mdSortChange)="sortData($event)">
+            <tbody style="height:260px">
+                <tr *ngIf="errmsg" [style.color]="'red'"> {{errmsg}}</tr>
+                <tr>
+                    <td class="s" md-sort-header="email">Email
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td class="s" md-sort-header="phone">Phone
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td class="s" md-sort-header="id">Name
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td class="s" md-sort-header="locationID">Branch
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td class="s" md-sort-header="level">Role
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td class="s">Password
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td class="s" md-sort-header="active">Active
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input-container>
+                            <input type="email" #maininput mdInput required [(ngModel)]="email" [formControl]="emailFC" name="email" placeholder="">
+                            <md-error *ngIf="emailFC.hasError('pattern')">
+                                Please enter a valid email
+                            </md-error>
+                            <md-error *ngIf="emailFC.hasError('required')">
+                                Email is <strong>required</strong>
+                            </md-error>
+                        </md-input-container>
+                    </td>
+                    <!-- <td class="s" contenteditable [ceDefault]="''" [ceModel]="email" (ceChange)="email=$event"></td> -->
+                    <!-- <td class="s" contenteditable [ceDefault]="''" [ceModel]="phone" (ceChange)="phone=$event"></td> -->
+                    <td>
+                        <md-input-container>
+                            <input #maininput mdInput required [(ngModel)]="phone" [formControl]="phoneFC" name="phone" placeholder="">
+                            <md-error *ngIf="phoneFC.hasError('pattern')">
+                                Please enter a valid phone
+                            </md-error>
+                            <md-error *ngIf="phoneFC.hasError('required')">
+                                Phone is <strong>required</strong>
+                            </md-error>
+                        </md-input-container>
+                    </td>
+                    <!-- <td class="s" contenteditable [ceDefault]="''" [ceModel]="id" (ceChange)="id=$event"></td> -->
+                    <td>
+                        <md-input-container>
+                            <input mdInput [(ngModel)]="id" name="id" placeholder="">
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-select required placeholder="Branch" [(ngModel)]="locationID" name="branch">
+                            <md-option *ngFor="let v of branches | async" [value]="v.locationID">
+                                {{v.name}}
+                            </md-option>
+                        </md-select>
+                    </td>
+                    <td>
+                        <md-select required placeholder="" [(ngModel)]="level" name="level">
+                            <md-option *ngFor="let v of roles" [value]="v.value">
+                                {{v.viewValue}}
+                            </md-option>
+                        </md-select>
+                    </td>
+                    <td>
+                        <md-input-container>
+                            <input style="width:170px" mdInput type="password" [(ngModel)]="password" name="password" placeholder="">
+                        </md-input-container>
+                    </td>
+                    <!-- <td class="s" contenteditable [ceDefault]="''" [ceModel]="password" (ceChange)="password=$event"></td> -->
+                    <td>
+                        <md-checkbox [(ngModel)]="active"></md-checkbox>
+                    </td>
+                    <td>
+                        <md-icon *ngIf="validInput()" mdTooltip="Fill and add this record" (click)="addRow($event)" style="color:green;">add</md-icon>
+                    </td>
+                </tr>
+                <tr *ngFor="let o of data">
+                    <td class="s">
+                        <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'email')">{{o.email}}</span></td>
+                    <td class="s">
+                        <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'phone')">{{o.phone}}</span></td>
+                    <td class="s" contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'id')">{{o.id}}</td>
+                    <td>
+                        <md-select (change)="leave($event,o,'locationID')" placeholder="" [(ngModel)]="o.locationID" name="slocationID">
+                            <md-option *ngFor="let v of branches | async" [value]="v.locationID">
+                                {{v.name}}
+                            </md-option>
+                        </md-select>
+                    </td>
+                    <td>
+                        <md-select (change)="leave($event,o,'level')" placeholder="" [(ngModel)]="o.level" name="srole">
+                            <md-option *ngFor="let v of roles" [value]="v.value">
+                                {{v.viewValue}}
+                            </md-option>
+                        </md-select>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <md-checkbox (change)="leave($event,o,'active')" [(ngModel)]="o.active"></md-checkbox>
+                    </td>
+                    <td>
+                        <md-icon mdTooltip="Delete this record" style="color:red;" (click)="delete(o)">clear</md-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>My Profile</h2>
+    <div>
+        <md-input-container>
+            <input [disabled]="true" mdInput [(ngModel)]="email" name="email" placeholder="">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput [(ngModel)]="phone" name="phone" placeholder="">
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container>
+            <input type="date" mdInput [(ngModel)]="birthday" name="birthday" placeholder="Enter birthday to get gift">
+        </md-input-container>
+        <md-input-container>
+            <input type="date" mdInput [(ngModel)]="anniversary" name="anniversary" placeholder="Enter anniversary to get gift">
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container>
+            <input mdInput [(ngModel)]="fname" name="fname" placeholder="First Name">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput [(ngModel)]="lname" name="lname" placeholder="Last Name">
+        </md-input-container>
+    </div>
+    <button color="primary" md-raised-button (click)="save()">Save</button> <span *ngIf='errmsg' [style.color]="'red'"> {{errmsg}}</span>
+</div>

@@ -1,0 +1,24 @@
+<md-card>
+    <md-card-title><span style='color:darkgoldenrod;'> Sign up for Fire Form Free</span></md-card-title>
+    <md-card-content>
+        <form class="sigup-form" fxLayout="column" fxLayoutAlign="space-around center">
+            <md-input-container class="example-full-width">
+                <input mdInput placeholder="Email">
+            </md-input-container><br>
+            <md-input-container class="example-full-width">
+                <input mdInput placeholder="Password">
+            </md-input-container>
+
+        </form>
+    </md-card-content>
+    <md-card-actions>
+        <div md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
+            <button color="primary" md-raised-button (click)="dialogRef.close('Register')">Register</button>
+            <button color="accent" md-raised-button (click)="dialogRef.close('Cancel')">Cancel</button>
+        </div>
+    </md-card-actions>
+    <md-card-footer>
+        <!--<div style="padding-left: 15px"> <b>Group package with 1000 forms</b> <br> 3G MB of storage<br>
+            <b><span style='color:darkorange;'>Workflow feature for daily office automation</span></b></div>-->
+    </md-card-footer>
+</md-card>

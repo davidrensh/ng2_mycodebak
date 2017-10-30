@@ -1,0 +1,26 @@
+<md-card>
+    <md-card-title><span style='color:darkgoldenrod;'> Log in to Fire Form</span></md-card-title>
+    <md-card-content>
+        <form class="login-form" fxLayout="column" fxLayoutAlign="space-around center">
+            <md-input-container class="example-full-width">
+                <input mdInput placeholder="Email">
+            </md-input-container><br>
+            <md-input-container class="example-full-width">
+                <input mdInput placeholder="Password">
+            </md-input-container>
+
+        </form>
+        <br>
+        <div fxLayout="row" fxLayoutAlign="end center"> Forget password?</div>
+    </md-card-content>
+    <md-card-actions>
+        <div md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
+            <button color="primary" md-raised-button (click)="dialogRef.close('Login')">Login</button>
+            <button color="accent" md-raised-button (click)="dialogRef.close('Cancel')">Cancel</button>
+        </div>
+        <div md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center"> Or </div>
+        <div md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
+            <button color="primary" md-raised-button (click)="dialogRef.close('UseFree')">Use Free Account</button>
+        </div>
+    </md-card-actions>
+</md-card>

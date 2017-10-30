@@ -1,0 +1,22 @@
+<div>
+    <h2 style='color:darkgoldenrod;'>Contests & Coupons</h2>
+    <button [routerLink]="['/contest',o.$key]" md-button *ngFor="let o of allcontests | async" style="width:520px;">
+      &nbsp;
+      <md-card fxLayout="column" fxLayoutAlign="center center" style="width:300px;">
+      <span style="font-size:18px;color:darkblue"  >{{o.title.substring(0,36)}}</span>
+      <span style="font-size:16px;color:darkblue" >{{o.short? o.short.substring(0,36) : ''}}</span>
+      <img *ngIf="o.image" [src]="o.image" style="max-width:100px;max-height:100px;">
+      <!-- <span style="font-size:12px">{{o.shortdes}} ({{o.store}}) {{getDTString(o.$key)}}</span> -->
+    </md-card>&nbsp;
+  </button>
+    <!-- <button fxHide.xl="true" fxHide.lg="true" fxHide.md="true" [routerLink]="['/' + (o.location ? 'newsread' : 'flyersread') ,o.$key]" md-button *ngFor="let o of allNewsFlyers| async" fxLayout="column" style="width:375px;">
+    <div  fxLayout="row"><md-icon *ngIf="!o.location" color="warn"><i style="font-size:20px" class="fa fa-newspaper-o"></i></md-icon>
+    <md-icon *ngIf="o.location" color="primary">description</md-icon>
+    <span style="font-size:14px">{{o.title.substring(0,36)}}</span> 
+    </div>
+    <div  fxLayout="row" fxLayoutAlign="start center">
+    <span style="width:330px;text-align:left;font-size:12px">{{o.location}} ({{o.store}}) {{getDTString(o.$key)}}</span>
+    <md-icon style="font-size:14px;width:14px;height:14px" color="accent">favorite_border</md-icon>{{o.likes}}
+    </div>
+  </button> -->
+</div>

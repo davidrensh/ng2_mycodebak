@@ -1,0 +1,16 @@
+.demo-card {
+  margin: 3px;
+  min-height: 800px;
+}
+.demo-toolbar {
+  padding: 1px;
+
+
+}
+  .demo-toolbar-icon {
+    padding: 0 14px 0 1px;
+  }
+
+  .demo-fill-remaining {
+    flex: 1 1 auto;
+  }

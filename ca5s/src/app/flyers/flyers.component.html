@@ -1,0 +1,90 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>Flyers management</h2>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Edit news
+            </ng-template>
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <mat-input-container>
+                        <input style="min-width: 300px" matInput required [(ngModel)]="title" name="title" placeholder="Title">
+                    </mat-input-container>
+                    <mat-tab-group style="width:500px;height:300px;border:1px solid darkgray;">
+                        <mat-tab label="New page">
+                            <div fxLayout="column" fxLayoutAlign="center center" style="border:1px solid darkgray;">
+                                <mat-input-container>
+                                    <textarea rows="8" cols="50" matInput required [(ngModel)]="des" name="des" placeholder="Description (text/html)"></textarea>
+                                </mat-input-container>
+                                <button *ngIf="title && des" color="primary" mat-raised-button (click)="addPage()">Add The Page
+                                   <mat-icon matTooltip="Add this page" style="color:red;">add</mat-icon>
+                                </button>
+                            </div>
+                        </mat-tab>
+                        <mat-tab *ngFor="let v of pages; let i = index;">
+                            <ng-template mat-tab-label>
+                                {{i + 1}} / {{pages.length}}&nbsp;
+                                <mat-icon (click)="deletePage(i)" matTooltip="Delete this page" style="color:red;">clear</mat-icon>
+                            </ng-template>
+                            <mat-input-container>
+                                <textarea rows="10" cols="50" matInput required [(ngModel)]="v.des" name="vdes" placeholder="Description (text/html)"></textarea>
+                            </mat-input-container>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+                &nbsp;
+                <button *ngIf="title && pages.length > 0" color="primary" mat-raised-button (click)="save()">Send Flyers</button>
+            </div>
+        </mat-tab>
+        <mat-tab label="Preview">
+            <ng-template mat-tab-label>
+                Preview
+            </ng-template>
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <div style="width:500px;height:380px;border:1px solid darkgray;">
+                    <div fxLayout="row" fxLayoutAlign="space-around end">
+                        <span style="font-size:25px">{{title}}</span>&nbsp;
+                        <div fxLayout="row">
+                            <span style="font-size:14px">({{store}})</span>&nbsp;
+                            <mat-icon color="accent" class="fa fa-heart fa-lg"></mat-icon>&nbsp;
+                            <mat-icon color="primary" class="fa fa-share fa-lg"></mat-icon>
+                        </div>
+                    </div>
+                    &nbsp;
+                    <mat-tab-group style="width:500px;height:300px;border:1px solid darkgray;">
+                        <mat-tab *ngFor="let v of pages; let i = index;">
+                            <ng-template mat-tab-label>
+                                {{i + 1}} / {{pages.length}}&nbsp;
+                                <mat-icon (click)="deletePage(i)" matTooltip="Delete this page" style="color:red;">clear</mat-icon>
+                            </ng-template>
+                            <div *ngIf="isHtml(v.des);else plaintext" [innerHtml]="v.des | safeHtml"></div>
+                            <ng-template #plaintext>{{v.des}}</ng-template>
+                        </mat-tab>
+                    </mat-tab-group>
+                    &nbsp;
+                </div>
+                <button *ngIf="title && pages.length > 0" color="primary" mat-raised-button (click)="save()">Send Flyers</button>
+            </div>
+        </mat-tab>
+        <mat-tab label="History">
+            <table *ngIf="hist" matSort (matSortChange)="sortData($event)">
+                <tbody style="height:260px">
+                    <tr>
+                        <th mat-sort-header="title">Title</th>
+                        <th mat-sort-header="publishedby">Published By</th>
+                        <th mat-sort-header="$key">Datetime </th>
+                    </tr>
+
+                    <tr *ngFor="let o of hist |async">
+                        <td style="width:350px; word-wrap:break-word;">{{o.title}}</td>
+                        <td>{{o.publishedby}}</td>
+                        <td>{{getDTString(o.$key)}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Total flyers: {{(hist | async)?.length}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+    </mat-tab-group>
+</div>

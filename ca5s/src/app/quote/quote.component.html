@@ -1,0 +1,20 @@
+<div fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
+    <div style="padding:4px;">
+        <mat-card>
+            <mat-card-title>
+                <span style='color:darkgoldenrod;'>Free Quote</span>
+            </mat-card-title>
+            <mat-card-content>
+                <div>
+                    <mat-radio-group [(ngModel)]="isCommercial">
+                        <mat-radio-button value="false">Residential</mat-radio-button>
+                        <mat-radio-button value="true">Commercial</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <app-ctl-service-type [oricategory]="cat"></app-ctl-service-type>
+                <div>
+                    <router-outlet></router-outlet>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>

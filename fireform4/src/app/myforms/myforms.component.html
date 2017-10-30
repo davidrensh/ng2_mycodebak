@@ -1,0 +1,10 @@
+<div>
+    <md-select floatPlaceholder="never" placeholder="Select form" [(ngModel)]="selectedName" (change)="selectFormWithName(selectedName)" name="food">
+        <md-option *ngFor="let d of fireforms | async" [value]="d.name">
+            {{d.name}}
+        </md-option>
+    </md-select>
+</div>
+<div>
+    <div #dynamicContentPlaceHolder></div>
+</div>

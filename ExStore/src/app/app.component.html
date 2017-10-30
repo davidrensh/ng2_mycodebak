@@ -1,0 +1,142 @@
+<button [mdMenuTriggerFor]="menu" style="top:8px;right:8px;position:absolute;z-index: 9999" color="" md-mini-fab fxShow fxHide.xl="true" fxHide.lg="true" fxHide.md="true"><md-icon>menu</md-icon></button>
+<md-toolbar style="background-color:#c5cae9" fxShow fxHide.xs="true" fxHide.sm="true" class="mat-elevation-z5" color="">
+    <div [style.color]="'darkgoldenrod'">
+        <i [style.color]="'darkgoldenrod'" style="font-size: 20px !important;" class="material-icons">card_giftcard</i> ExReward
+    </div>
+    <span style="flex: 1 1 auto;color:#283593" xLayout="row" fxLayoutAlign="center center">{{(isLoggedin && employeeO) ? 'Welcome ' + employeeO.id: ''}}</span>
+    <div flex fxLayout="row" fxLayoutAlign="end center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <md-icon color="primary">timeline</md-icon><button md-menu-item [routerLink]="['/biz']">Transaction</button> </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <md-icon color="accent">group</md-icon><button md-menu-item [mdMenuTriggerFor]="membermenu">Members</button> </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <md-icon color="primary">business</md-icon><button md-menu-item [mdMenuTriggerFor]="storemenu">Management</button> </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <md-icon color="warn">monetization_on</md-icon><button md-menu-item [mdMenuTriggerFor]="marketingmenu">Marketing Tool</button> </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <md-icon color="primary">info</md-icon><button md-menu-item [routerLink]="['/about']">About</button> </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <md-icon color="{{!isLoggedin ? 'warn' : 'primary' }}">{{!isLoggedin ? 'lock_open' : 'lock_outline' }}</md-icon>
+            <button *ngIf="!isLoggedin; else logoutbtn2" md-menu-item [routerLink]="['/login']">
+            {{!isLoggedin ? 'Login' : 'Logout' }}
+            </button>
+            <ng-template #logoutbtn2>
+                <button md-menu-item (click)="logout()">
+                 {{!isLoggedin ? 'Login' : 'Logout' }}
+                </button>
+            </ng-template>
+        </div>
+    </div>
+</md-toolbar>
+<md-menu #membermenu="mdMenu">
+    <div> <button md-menu-item [routerLink]="['/addmember']">
+    <md-icon style="color:green;padding-right:0px">person_add</md-icon>
+    Add Member
+  </button>
+    </div>
+    <button md-menu-item [routerLink]="['/memberadmin']">
+    <md-icon style="color:red">group</md-icon>
+    <span>Members</span>
+  </button>
+</md-menu>
+<md-menu #menu="mdMenu">
+    <button md-menu-item [routerLink]="['/biz']">
+    <md-icon style="color:darkblue">timeline</md-icon>
+    <span>Transaction</span>
+  </button>
+    <button md-menu-item [routerLink]="['/addmember']">
+    <md-icon style="color:green">person_add</md-icon>
+    <span>Add Member</span>
+  </button>
+    <button md-menu-item [routerLink]="['/memberadmin']">
+    <md-icon style="color:red">group</md-icon>
+    <span>Members</span>
+  </button>
+    <button md-menu-item [routerLink]="['/membership']">
+    <md-icon style="color:goldenrod">card_membership</md-icon>
+    <span>Membership</span>
+  </button>
+    <button md-menu-item [routerLink]="['/employee']">
+    <md-icon style="color:blue">people_outline</md-icon>
+    <span>Employee</span>
+ </button>
+    <button md-menu-item [routerLink]="['/changepassword']">
+  <md-icon style="color:blue">vpn_key</md-icon>
+  <span>Change Password</span>
+</button>
+    <button md-menu-item [routerLink]="['/reports']">
+    <md-icon style="color:green">assessment</md-icon>
+    <span>Reports</span>
+ </button>
+    <button *ngIf="isAdmin" md-menu-item [routerLink]="['/store']">
+    <md-icon style="color:red">store</md-icon>
+    <span>Store</span>
+ </button>
+    <button md-menu-item [routerLink]="['/branch']">
+    <md-icon style="color:green">call_split</md-icon>
+    <span>Branch</span>
+ </button>
+    <button md-menu-item [routerLink]="['/news']">
+    <md-icon style="color:red">description</md-icon>
+    <span>News</span>
+  </button>
+    <button md-menu-item [routerLink]="['/flyers']">
+      <md-icon style="color:#e64a19;height:40px;line-height:32px"><i style="font-size:16px !important" class="fa fa-newspaper-o"></i></md-icon>
+    <span>Flyers</span>
+  </button>
+    <button md-menu-item [routerLink]="['/about']">
+    <md-icon style="color:blue">info</md-icon>
+    <span>About</span>
+  </button>
+    <button *ngIf="!isLoggedin; else logoutbtn" md-menu-item [routerLink]="['/login']">
+    <md-icon style="color:red">{{!isLoggedin ? 'lock_open' : 'lock_outline' }}</md-icon>
+    <span>{{!isLoggedin ? 'Login' : 'Logout' }}</span>
+  </button>
+    <ng-template #logoutbtn>
+        <button md-menu-item (click)="logout()">
+          <md-icon style="color:blue">{{!isLoggedin ? 'lock_open' : 'lock_outline' }}</md-icon>
+          <span>{{!isLoggedin ? 'Login' : 'Logout' }}</span>
+        </button>
+    </ng-template>
+</md-menu>
+<md-menu #storemenu="mdMenu">
+    <button md-menu-item [routerLink]="['/membership']">
+    <md-icon style="color:goldenrod">card_membership</md-icon>
+    <span>Membership</span>
+  </button>
+    <button md-menu-item [routerLink]="['/employee']">
+    <md-icon style="color:blue">people_outline</md-icon>
+    <span>Employee</span>
+ </button>
+    <button md-menu-item [routerLink]="['/reports']">
+    <md-icon style="color:green">assessment</md-icon>
+    <span>Reports</span>
+ </button>
+    <button *ngIf="isAdmin" md-menu-item [routerLink]="['/store']">
+    <md-icon style="color:red">store</md-icon>
+    <span>Store</span>
+ </button>
+    <button md-menu-item [routerLink]="['/branch']">
+    <md-icon style="color:green">call_split</md-icon>
+    <span>Branch</span>
+ </button>
+    <button md-menu-item [routerLink]="['/changepassword']">
+  <md-icon style="color:blue">vpn_key</md-icon>
+  <span>Change Password</span>
+</button>
+</md-menu>
+<md-menu #marketingmenu="mdMenu">
+    <button md-menu-item [routerLink]="['/news']">
+    <md-icon style="color:red">description</md-icon>
+    <span>News</span>
+  </button>
+    <button md-menu-item [routerLink]="['/flyers']">
+      <md-icon style="color:#e64a19;height:40px;line-height:32px"><i style="font-size:16px !important" class="fa fa-newspaper-o"></i></md-icon>
+    <span>Flyers</span>
+  </button>
+    <button md-menu-item [routerLink]="['/contests']">
+    <md-icon style="color:#978E0B;height:40px;line-height:32px">attach_money</md-icon>
+  <span>Contests</span>
+</button>
+</md-menu>
+<router-outlet></router-outlet>

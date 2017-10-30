@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <md-card fxHide.xs="true" fxHide.sm="true" *ngIf="news && newsdetail" [style.width.px]="800" [style.height.px]="540">
+        <md-card-title fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>{{news.title}}</span></md-card-title>
+        <md-card-subtitle fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>{{news.short}}</span></md-card-subtitle>
+        <md-card-content>
+            <div *ngIf="isHtml(newsdetail.des)" [innerHtml]="newsdetail.des | safeHtml"></div>
+            <div *ngIf="!isHtml(newsdetail.des)">{{newsdetail.des}}</div>
+        </md-card-content>
+        <md-card-actions>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <md-icon (click)="like()" color="accent">favorite_border</md-icon>{{likeNum}}&nbsp;&nbsp;&nbsp;&nbsp;
+                <md-icon (click)="openSnackBar()" color="primary">share</md-icon>
+            </div>
+        </md-card-actions>
+    </md-card>
+    <md-card fxHide.xl="true" fxHide.lg="true" fxHide.md="true" *ngIf="news && newsdetail" [style.width.px]="370" [style.height.px]="540">
+        <md-card-title fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>{{news.title}}</span></md-card-title>
+        <md-card-subtitle fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>{{news.short}}</span></md-card-subtitle>
+        <md-card-content>
+            <div *ngIf="isHtml(newsdetail.des)" [innerHtml]="newsdetail.des | safeHtml"></div>
+            <div *ngIf="!isHtml(newsdetail.des)">{{newsdetail.des}}</div>
+        </md-card-content>
+        <md-card-actions>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <md-icon (click)="like()" color="accent">favorite_border</md-icon>{{likeNum}}&nbsp;&nbsp;&nbsp;&nbsp;
+                <md-icon (click)="openSnackBar()" color="primary">share</md-icon>
+            </div>
+        </md-card-actions>
+    </md-card>
+</div>

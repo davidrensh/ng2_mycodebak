@@ -1,0 +1,69 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>Reports</h2>
+    <div>
+        <md-select placeholder="Report Type" (change)="getRptSubType(rptType)" [(ngModel)]="rptType" name="rptType">
+            <md-option *ngFor="let t of rptTypes" [value]="t">
+                {{t.viewValue}}
+            </md-option>
+        </md-select>
+        <md-select *ngIf="rptType !== null" (change)="changeSubType()" placeholder="{{'Select ' + rptType.viewValue}}" [(ngModel)]="rptSubType" name="rptSubType">
+            <md-option *ngFor="let s of rptSubTypes" [value]="s.value">
+                {{s.viewValue}}
+            </md-option>
+        </md-select>
+        <md-select *ngIf="rptSubType !== null" placeholder="Report Year" [(ngModel)]="rptYear" name="rptType">
+            <md-option *ngFor="let y of rptYears" [value]="y">
+                {{y}}
+            </md-option>
+        </md-select>
+        <button *ngIf="rptSubType !== null && rptYear" md-raised-button color="primary" (click)="showYearRpt()">{{rptYear}} Report</button>
+        <md-select *ngIf="rptSubType !== null && rptYear" (change)="showMonthRpt()" placeholder="Report Month" [(ngModel)]="rptMonth" name="rptType">
+            <md-option *ngFor="let m of rptMonths" [value]="m">
+                {{m}}
+            </md-option>
+        </md-select>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+        <table *ngIf="rptSubType !== null && rptYear" mdSort (mdSortChange)="sortData($event)">
+            <tbody style="height:260px">
+                <tr>
+                    <th md-sort-header="e">Customer </th>
+                    <th md-sort-header="i">Invoice total</th>
+                    <th md-sort-header="t">Type </th>
+                    <th md-sort-header="a">Changed Ps </th>
+                    <th md-sort-header="b">Balance Ps </th>
+                    <th md-sort-header="n">Employee </th>
+                    <th md-sort-header="l">Location </th>
+                    <th md-sort-header="$key">Datetime </th>
+                </tr>
+                <!-- <tr *ngFor="let o of data">
+                    <td>{{o.e}}</td>
+                    <td style="text-align: right;">{{o.i}}</td>
+                    <td>{{getTransType(o.t)}}</td>
+                    <td style="text-align: right;">{{o.a}}</td>
+                    <td style="text-align: right;">{{o.b}}</td>
+                    <td>{{o.n}}</td>
+                    <td>{{o.l}}</td>
+                    <td>{{getDTString(o.$key)}}</td>
+                </tr> -->
+                <tr *ngFor="let o of data">
+                    <td>{{toEmail(o.e)}}</td>
+                    <td style="text-align: right;">{{o.i}}</td>
+                    <td>{{getTransType(o.t)}}</td>
+                    <td style="text-align: right;">{{o.a}}</td>
+                    <td style="text-align: right;">{{o.b}}</td>
+                    <td>{{o.n}}</td>
+                    <td>{{o.l}}</td>
+                    <td>{{getDTString(o.$key)}}</td>
+                </tr>
+                <tr>
+                    <th style="text-align: right;">Count: {{totalCount}}</th>
+                    <th style="text-align: right;">Total$: {{total$}}</th>
+                </tr>
+            </tbody>
+        </table>
+        <md-paginator *ngIf="data && length > 0" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[10, 25, 50, 100]" (page)="pageChange($event)">
+        </md-paginator>
+    </div>
+</div>

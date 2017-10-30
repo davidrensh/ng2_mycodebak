@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/*@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';*/
+
+body {
+    font-family: "Knockout 48 A", "Knockout 48 B", Arial, sans-serif !important;
+}
+
+.mat-card {
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    display: block;
+    position: relative;
+    padding: 2px !important;
+    border-radius: 2px;
+    margin: 2px !important;
+}
+
+html .mat-card md-card-content {
+    padding: 0px;
+}
+
+.mat-list .mat-list-item .mat-list-item-content,
+.mat-nav-list .mat-list-item .mat-list-item-content {
+    padding: 0px !important;
+    height: 36px !important;
+}
+
+.mat-list .mat-list-item .mat-list-icon,
+.mat-nav-list .mat-list-item .mat-list-icon {
+    padding: 0px !important;
+}
+
+.mat-list .mat-list-item .mat-list-text,
+.mat-nav-list .mat-list-item .mat-list-text {
+    padding: 0px !important;
+}
+
+.mat-card-header {
+    padding: 0 !important;
+}
+
+.mat-card-header+.mat-card-content {
+    padding: 0 !important;
+}
+
+.mat-card-header-text {
+    margin: 0 !important;
+}
+
+.mat-card-title-group {
+    margin: 0 !important;
+    padding: 2px !important;
+}
+
+.mat-card-actions,
+.mat-card-content,
+.mat-card-subtitle,
+.mat-card-title {
+    display: block;
+    margin: 0 !important;
+}
+
+.mat-list,
+.mat-nav-list {
+    padding: 0 !important;
+    display: block;
+}
+
+.mat-card-subtitle {
+    color: rgba(0, 0, 0, .54);
+    font-size: 18px;
+    font-style: italic;
+}
+
+.mat-list .mat-list-item .mat-list-item-content,
+.mat-nav-list .mat-list-item .mat-list-item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 !important;
+    position: relative;
+}
+
+.mat-list .mat-list-item .mat-list-item-content,
+.mat-nav-list .mat-list-item .mat-list-item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 !important;
+    position: relative;
+}

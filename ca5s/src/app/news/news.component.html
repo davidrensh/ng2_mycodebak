@@ -1,0 +1,86 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>News Management</h2>
+    <mat-tab-group>
+        <mat-tab label="Edit news">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <mat-input-container>
+                        <input matInput required [(ngModel)]="title" name="title" placeholder="Title">
+                    </mat-input-container>
+                    <mat-input-container>
+                        <input matInput required [(ngModel)]="location" name="location" placeholder="Location">
+                    </mat-input-container>
+                    <mat-input-container>
+                        <textarea rows="2" cols="50" matInput required [(ngModel)]="shortDes" name="shortDes" placeholder="Short Description"></textarea>
+                    </mat-input-container>
+                    <mat-input-container>
+                        <textarea rows="5" cols="50" matInput required [(ngModel)]="des" name="des" placeholder="Description (text/html)"></textarea>
+                    </mat-input-container>
+                </div>
+                <button *ngIf="title && location && shortDes && des" color="primary" mat-raised-button (click)="save()">Send News</button>
+            </div>
+        </mat-tab>
+        <mat-tab label="Preview">
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <div style="width:500px;border:1px solid darkgray;">
+                    <div fxLayout="row" fxLayoutAlign="space-around end">
+                        <span style="font-size:25px">{{title}}</span>&nbsp;
+                        <div fxLayout="row">
+                            <span style="font-size:14px">{{location}} ({{store}})</span>&nbsp;
+                            <!-- <mat-icon color="accent" class="fa fa-heart fa-lg"></mat-icon>&nbsp;
+                            <mat-icon color="primary" class="fa fa-share fa-lg"></mat-icon> -->
+                        </div>
+                    </div>
+                    <div>{{shortDes}}
+                        <mat-icon color="warn" (click)="more = !more">{{!more ? 'add' : 'remove'}}</mat-icon>
+                        <div *ngIf="more && isHtml()" [innerHtml]="des | safeHtml"></div>
+                        <div *ngIf="more && !isHtml()">{{des}}</div>
+                    </div>
+                    &nbsp;
+                </div>
+                <mat-divider mat-inset style="width:500px;border-width: 1px;border-style:inset;"></mat-divider>
+                <div style="width:500px;border:1px solid darkgray;">
+                    <div fxLayout="row" fxLayoutAlign="space-around end">
+                        <span style="font-size:25px">Other news title</span>&nbsp;
+                        <div fxLayout="row">
+                            <span style="font-size:14px">City center (SPASATION)</span>&nbsp;
+                            <!-- <mat-icon color="accent" class="fa fa-heart fa-lg"></mat-icon>&nbsp;
+                            <mat-icon color="primary" class="fa fa-share fa-lg"></mat-icon> -->
+                        </div>
+                    </div>
+                    <div>Celerbrate 150th canada anniversary
+                        <mat-icon color="warn" (click)="more2 = !more2">{{!more2 ? 'add' : 'remove'}}</mat-icon>
+                        <div *ngIf="more2">This is an example news section. This is an example news section.This is an example news section.This is an example news section.
+                        </div>
+                    </div>
+                </div>
+                &nbsp;
+                <button *ngIf="title && location && shortDes && des" color="primary" mat-raised-button (click)="save()">Send News</button>
+            </div>
+        </mat-tab>
+        <mat-tab label="History">
+            <table *ngIf="hist" matSort (matSortChange)="sortData($event)">
+                <tbody style="height:260px">
+                    <tr>
+                        <th mat-sort-header="title">Title</th>
+                        <th mat-sort-header="location">Location</th>
+                        <!-- <th mat-sort-header="short">Short description</th> -->
+                        <th mat-sort-header="publishedby">published By</th>
+                        <th mat-sort-header="$key">Datetime </th>
+                    </tr>
+
+                    <tr *ngFor="let o of hist |async">
+                        <td style="width:100px; word-wrap:break-word;">{{o.title}}</td>
+                        <td>{{o.location}}</td>
+                        <!-- <td style="width:100px; word-wrap:break-word;">{{o.short}}</td> -->
+                        <td>{{o.publishedby}}</td>
+                        <td>{{getDTString(o.$key)}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Total news: {{(hist | async)?.length}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+    </mat-tab-group>
+</div>

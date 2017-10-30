@@ -1,0 +1,12 @@
+<div style="margin:4px;" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card>
+        <mat-card-title style="color:darkblue" fxLayout="row" fxLayoutAlign="center"><span color="primary">Our Services</span></mat-card-title>
+        <mat-card-content>
+            <mat-list *ngFor="let t of categories">
+                <mat-list-item>
+                    <button color="primary" mat-raised-button (click)="goto(t.route)">{{t.name}}</button>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,69 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>Reports</h2>
+    <div>
+        <mat-select placeholder="Report Type" (change)="getRptSubType(rptType)" [(ngModel)]="rptType" name="rptType">
+            <mat-option *ngFor="let t of rptTypes" [value]="t">
+                {{t.viewValue}}
+            </mat-option>
+        </mat-select>
+        <mat-select *ngIf="rptType !== null" (change)="changeSubType()" placeholder="{{'Select ' + rptType.viewValue}}" [(ngModel)]="rptSubType" name="rptSubType">
+            <mat-option *ngFor="let s of rptSubTypes" [value]="s.value">
+                {{s.viewValue}}
+            </mat-option>
+        </mat-select>
+        <mat-select *ngIf="rptSubType !== null" placeholder="Report Year" [(ngModel)]="rptYear" name="rptType">
+            <mat-option *ngFor="let y of rptYears" [value]="y">
+                {{y}}
+            </mat-option>
+        </mat-select>
+        <button *ngIf="rptSubType !== null && rptYear" mat-raised-button color="primary" (click)="showYearRpt()">{{rptYear}} Report</button>
+        <mat-select *ngIf="rptSubType !== null && rptYear" (change)="showMonthRpt()" placeholder="Report Month" [(ngModel)]="rptMonth" name="rptType">
+            <mat-option *ngFor="let m of rptMonths" [value]="m">
+                {{m}}
+            </mat-option>
+        </mat-select>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+        <table *ngIf="rptSubType !== null && rptYear" matSort (matSortChange)="sortData($event)">
+            <tbody style="height:260px">
+                <tr>
+                    <th mat-sort-header="e">Customer </th>
+                    <th mat-sort-header="i">Invoice total</th>
+                    <th mat-sort-header="t">Type </th>
+                    <th mat-sort-header="a">Changed Ps </th>
+                    <th mat-sort-header="b">Balance Ps </th>
+                    <th mat-sort-header="n">Employee </th>
+                    <th mat-sort-header="l">Location </th>
+                    <th mat-sort-header="$key">Datetime </th>
+                </tr>
+                <!-- <tr *ngFor="let o of data">
+                    <td>{{o.e}}</td>
+                    <td style="text-align: right;">{{o.i}}</td>
+                    <td>{{getTransType(o.t)}}</td>
+                    <td style="text-align: right;">{{o.a}}</td>
+                    <td style="text-align: right;">{{o.b}}</td>
+                    <td>{{o.n}}</td>
+                    <td>{{o.l}}</td>
+                    <td>{{getDTString(o.$key)}}</td>
+                </tr> -->
+                <tr *ngFor="let o of data">
+                    <td>{{toEmail(o.e)}}</td>
+                    <td style="text-align: right;">{{o.i}}</td>
+                    <td>{{getTransType(o.t)}}</td>
+                    <td style="text-align: right;">{{o.a}}</td>
+                    <td style="text-align: right;">{{o.b}}</td>
+                    <td>{{o.n}}</td>
+                    <td>{{o.l}}</td>
+                    <td>{{getDTString(o.$key)}}</td>
+                </tr>
+                <tr>
+                    <th style="text-align: right;">Count: {{totalCount}}</th>
+                    <th style="text-align: right;">Total$: {{total$}}</th>
+                </tr>
+            </tbody>
+        </table>
+        <mat-paginator *ngIf="data && length > 0" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[10, 25, 50, 100]" (page)="pageChange($event)">
+        </mat-paginator>
+    </div>
+</div>

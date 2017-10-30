@@ -1,0 +1,102 @@
+<md-sidenav-layout>
+    <md-sidenav #mystart mode="side">
+        <h5 md-subheader>Contract A 5 Star</h5>
+        <md-nav-list>
+            <a md-list-item>
+                <md-icon md-list-icon>kitchen</md-icon>
+                <span md-line>Residents</span>
+                <!--<span md-line class="demo-secondary-text"> Description </span>-->
+            </a>
+            <a md-list-item>
+                <md-icon md-list-icon>business</md-icon>
+                <span md-line>Commercial</span>
+            </a>
+            <a md-list-item>
+                <md-icon md-list-icon>pin_drop</md-icon>
+                <span md-line>Find a City</span>
+            </a>
+            <a md-list-item>
+                <md-icon md-list-icon>group_work</md-icon>
+                <span md-line>Post A Job</span>
+            </a>
+        </md-nav-list>
+        <h5 md-subheader>Contractors</h5>
+        <md-nav-list>
+            <a md-list-item>
+                <md-icon md-list-icon>build</md-icon>
+                <span md-line>Contractors</span>
+            </a>
+            <a md-list-item>
+                <md-icon md-list-icon>create</md-icon>
+                <span md-line>Become A Contractor</span>
+            </a>
+        </md-nav-list>
+        <h5 md-subheader>&nbsp;</h5>
+        <md-nav-list>
+            <a md-list-item>
+                <md-icon md-list-icon>airline_seat_recline_normal</md-icon>
+                <span md-line>Careers</span>
+            </a>
+            <a md-list-item>
+                <md-icon md-list-icon>movie</md-icon>
+                <span md-line>Newsroom</span>
+            </a>
+            <a md-list-item>
+                <md-icon md-list-icon>star</md-icon>
+                <span md-line>Quality & Code</span>
+            </a>
+            <a md-list-item>
+                <md-icon md-list-icon>help</md-icon>
+                <span md-line>Customer Service</span>
+            </a>
+        </md-nav-list>
+    </md-sidenav>
+
+
+    <nav class="navbar  navbar-light bg-faded" style="background-color: #e3f2fd;">
+
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <button class="navbar-toggler" type="button" (click)="mystart.toggle()">
+            &#9776;
+            </button>
+            </li>
+
+            <li class="nav-item">
+                <a class="navbar-brand" href="/">Contract A 5 Star</a>
+            </li>
+
+        </ul>
+
+        <ul class="nav navbar-nav pull-right">
+            <!--<li class="nav-item">
+            <a class="nav-link" href="#">Find A City</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Help</a>
+        </li>-->
+            <li class="nav-item">
+                <a class="nav-link" href="#">Residents</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Commercial</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contractors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sign In</a>
+            </li>
+            <!--<li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>-->
+        </ul>
+    </nav>
+
+    <div class="demo-sidenav-content">
+        <md-card class="demo-card">
+            <h3>Header</h3>
+            <router-outlet></router-outlet>
+        </md-card>
+    </div>
+</md-sidenav-layout>

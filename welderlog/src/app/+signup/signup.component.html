@@ -1,0 +1,22 @@
+<button class="btn btn-primary-outline btn-sm" (click)="setup()">Setup Base Menu</button>
+<div class=" text-xs-center text-lg-center  text-md-center col-xs-12 col-sm-12  col-md-8 col-lg-offset-2 col-lg-8">
+  <div class="card">
+    <div class="card-header card-inverse card-info">
+      Customer Register
+    </div>
+    <div class="card-block">
+      <form class="form-inline">
+        <span class="radio">
+                        <input class="form-control" required [(ngModel)]="fname" placeholder="First name"><input class="form-control" required [(ngModel)]="lname" placeholder="Last name"><br>
+                        <input class="form-control" required [(ngModel)]="phone" placeholder="Phone"><input class="form-control" type="password" required #password placeholder="Password"><br>
+                        <input class="form-control" required [(ngModel)]="email" placeholder="User email"><input class="form-control" required [(ngModel)]="address" placeholder="Address"><br>
+                    </span><br>
+        <button class="btn btn-primary-outline btn-sm" [disabled]="!(fname && lname && phone )" (click)="signup(fname, lname,email,password.value,phone,address)">Signup</button>
+      </form>
+    </div>
+    <div *ngIf="errmsg" class="card-header card-inverse card-warning">
+      {{errmsg}}
+    </div>
+  </div>
+
+</div>

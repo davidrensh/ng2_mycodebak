@@ -1,0 +1,48 @@
+<div fxFlexAlign="center" fxLayout="column" [style.height.px]="450" fxLayoutAlign="center center">
+    <md-card [style.width.px]="250" [style.height.px]="300">
+        <md-card-title fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>Add Member</span></md-card-title>
+        <md-card-content>
+
+            <form class="login-form" fxLayout="column" fxLayoutAlign="space-around center">
+                <md-input-container>
+                    <input #maininput mdInput required [(ngModel)]="email" [formControl]="emailFC" name="email" placeholder="Member's Email">
+                    <md-error *ngIf="emailFC.hasError('pattern')">
+                        Please enter a valid email
+                    </md-error>
+                    <md-error *ngIf="emailFC.hasError('required')">
+                        Email is <strong>required</strong>
+                    </md-error>
+                </md-input-container>
+                <md-input-container>
+                    <input #maininput mdInput required [(ngModel)]="phone" [formControl]="phoneFC" name="phone" placeholder="Member's Phone">
+                    <md-error *ngIf="phoneFC.hasError('pattern')">
+                        Please enter a valid phone
+                    </md-error>
+                    <md-error *ngIf="phoneFC.hasError('required')">
+                        Phone is <strong>required</strong>
+                    </md-error>
+                </md-input-container>
+
+                <md-input-container>
+                    <input style="width:170px" mdInput type="password" [(ngModel)]="password" name="password" placeholder="Password">
+                </md-input-container>
+                <md-select placeholder="Membership" [(ngModel)]="membership" name="membership">
+                    <!-- <md-option [value]=""></md-option> -->
+                    <md-option *ngFor="let v of memberships | async" [value]="v.name">
+                        {{v.name}}<span [style.color]="red"> &nbsp;${{v.regFee}}</span>
+                    </md-option>
+                </md-select>
+            </form>
+            <span *ngIf='errmsg' [style.color]="'red'"> {{errmsg}}</span>
+        </md-card-content>
+        <md-card-actions>
+            <!--<div md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">-->
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <button *ngIf="validInput()" color="primary" md-raised-button (click)="add()">Save</button>
+            </div>
+        </md-card-actions>
+    </md-card>
+</div>
+<!-- <div *ngIf="isLoggedin">
+    <button color="primary" md-raised-button (click)="logout()">Logout</button>
+</div> -->

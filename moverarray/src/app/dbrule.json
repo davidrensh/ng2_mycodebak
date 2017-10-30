@@ -1,0 +1,80 @@
+{
+    "rules": {
+        ".read": false,
+        ".write": "auth != null",
+        "news": {
+            ".read": true,
+            ".write": "auth != null",
+            ".indexOn": ["store"]
+        },
+        "stores": {
+            ".read": true,
+            ".write": "auth != null"
+        },
+        "c": {
+            ".read": "auth != null",
+            ".write": "auth != null",
+            "$store": {
+                ".read": "auth != null",
+                ".write": "auth != null",
+                "e": {
+                    ".read": "auth != null",
+                    ".write": "auth != null",
+                    "$e": {
+                        ".read": "auth != null",
+                        ".write": "auth != null"
+                    }
+                },
+                "p": {
+                    ".read": "auth != null",
+                    ".write": "auth != null"
+                },
+                "s": {
+                    ".read": "auth != null",
+                    ".write": "auth != null"
+                }
+            }
+        },
+        "ep": {
+            ".read": "auth != null",
+            ".write": "auth != null",
+            ".indexOn": ["store"]
+        },
+        "flyers": {
+            ".read": true,
+            ".write": "auth != null",
+            ".indexOn": ["store"]
+        },
+        "newsdetail": {
+            ".read": true,
+            ".write": "auth != null"
+        },
+        "flyersdetail": {
+            ".read": true,
+            ".write": "auth != null"
+        },
+        "u": {
+            ".read": true,
+            ".write": true,
+            "$email": {
+                ".read": true,
+                ".write": "auth != null",
+                "c": {
+                    ".read": "auth != null",
+                    ".write": "auth != null"
+                }
+            }
+        },
+        "p": {
+            ".read": true,
+            ".write": "auth != null",
+            "$phone": {
+                ".read": true,
+                ".write": "auth != null"
+            }
+        },
+        "categories": {
+            ".read": true
+        }
+    }
+}

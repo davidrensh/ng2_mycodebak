@@ -1,0 +1,117 @@
+<md-sidenav-container>
+    <md-sidenav #sidenav mode="side" opened="true" style="background-color: #e3f2fd;">
+        <td-expansion-panel label="Flex Office" expand="true">
+            <md-card>
+                <md-card-content>
+                    <md-nav-list>
+                        <a md-list-item [routerLink]="['/myform']">
+                            <md-icon md-list-icon><i class="fa fa-tasks" aria-hidden="true"></i></md-icon>
+                            <span md-line>Assignments</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/editor']">
+                            <md-icon md-list-icon><i class="fa fa-envelope-open" aria-hidden="true"></i></md-icon>
+                            <span md-line>Data Message</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/share']">
+                            <md-icon md-list-icon><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
+                            <span md-line>Contacts</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/share']">
+                            <md-icon md-list-icon><i class="fa fa-calendar" aria-hidden="true"></i></md-icon>
+                            <span md-line>Calendar</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/myform']">
+                            <md-icon md-list-icon><i class="fa fa-comments" aria-hidden="true"></i></md-icon>
+                            <span md-line>Chat</span>
+                        </a>
+                    </md-nav-list>
+                </md-card-content>
+            </md-card>
+        </td-expansion-panel>
+        <td-expansion-panel label="Flex Workshop">
+            <md-card>
+                <md-card-content>
+                    <md-nav-list>
+                        <a md-list-item [routerLink]="['/myform']">
+                            <md-icon md-list-icon><i class="fa fa-files-o" aria-hidden="true"></i></md-icon>
+                            <span md-line>My Forms</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/share']">
+                            <md-icon md-list-icon><i class="fa fa-share-alt" aria-hidden="true"></i></md-icon>
+                            <span md-line>Shared To Me</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/myform']">
+                            <md-icon md-list-icon><i class="fa fa-cogs" aria-hidden="true"></i></md-icon>
+                            <span md-line>My Workflow</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/editor']">
+                            <md-icon md-list-icon><i class="fa fa-edit" aria-hidden="true"></i></md-icon>
+                            <span md-line>Editor</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/convert']">
+                            <md-icon md-list-icon><i class="fa fa-random" aria-hidden="true"></i></md-icon>
+                            <span md-line>Convert</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/trash']">
+                            <md-icon md-list-icon><i class="fa fa-trash" aria-hidden="true"></i></md-icon>
+                            <span md-line>Trash</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/help']">
+                            <md-icon md-list-icon><i class="fa fa-question" aria-hidden="true"></i></md-icon>
+                            <span md-line>Help</span>
+                        </a>
+                    </md-nav-list>
+                </md-card-content>
+            </md-card>
+        </td-expansion-panel>
+        <td-expansion-panel label="My Account">
+            <md-card class="s-card">
+                <md-card-content>
+                    <md-nav-list>
+                        <a md-list-item [routerLink]="['/setting']">
+                            <md-icon md-list-icon><i class="fa fa-cog" aria-hidden="true"></i></md-icon>
+                            <span md-line>Setting</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/payment']">
+                            <md-icon md-list-icon><i class="fa fa-money" aria-hidden="true"></i></md-icon>
+                            <span md-line>Payment</span>
+                        </a>
+                        <a md-list-item [routerLink]="['/storage']">
+                            <md-icon md-list-icon><i class="fa fa-database" aria-hidden="true"></i></md-icon>
+                            <span md-line>Storage</span>
+                        </a>
+                    </md-nav-list>
+                </md-card-content>
+
+            </md-card>
+        </td-expansion-panel>
+    </md-sidenav>
+
+    <md-toolbar style="background-color: #e3f2fd;">
+        <a md-mini-fab color="primary" (click)="sidenav.toggle()">
+            <md-icon>menu</md-icon>
+        </a>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <!--<label class="nav-link" href="/">Forms As Service</label >-->
+        <a class="big-nav-link" [routerLink]="['.']">Flex Office</a >
+
+        <div class="remaining-space">
+
+        </div>
+        <div class="remaining-space">
+            <a class="nav-link" [routerLink]="['/demo']" md-raised-button>Enterprise Examples</a> &nbsp;&nbsp;
+        <a class="nav-link" [routerLink]="['/pricing']" md-raised-button>Pricing</a>
+        </div>
+        <div>
+            <a class="nav-link" (click)="signupDialog()" md-raised-button>Sign Up Free</a>
+            <a class="nav-link" (click)="loginDialog()" md-raised-button>Log in</a>
+        </div>
+    </md-toolbar>
+    <!--background-image:url('./assets/bwd.png');-->
+    <div class="sidenav-content" style="background-color: #e3f2fd;background-repeat:no-repeat;background-position: center center;">
+        <md-card class="demo-card" style="font-family: 'Knockout 48 A', 'Knockout 48 B', Arial, sans-serif;min-height: 900px;min-width: 1024px; background-color: #e3f2fd;opacity: 0.9;">
+            <!--<h3>Header</h3>-->
+            <router-outlet></router-outlet>
+        </md-card>
+    </div>
+</md-sidenav-container>

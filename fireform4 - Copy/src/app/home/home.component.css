@@ -1,0 +1,46 @@
+.homepage-hero .homepage-hero-content h2 {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.homepage-hero .homepage-hero-content h2 span {
+    display: block;
+}
+
+.homepage-hero-section-b .homepage-hero-content #content {
+    height: 70px;
+    width: 60px;
+    margin: 25px auto 15px auto;
+}
+
+.homepage-hero-section-b .homepage-hero-content .lucidis {
+    font-size: 1em;
+}
+
+.homepage-hero-section-b .homepage-hero-content h1 .spans {
+    width: 100%;
+}
+
+.homepage-hero-section-b .homepage-hero-content h1 {
+    font-size: 1em;
+}
+
+@media only screen and (min-width: 641px) {
+    .homepage-hero-section-b .homepage-hero-content h1 {
+        font-size: 1.5em;
+    }
+    .homepage-hero-section-b .homepage-hero-content .lucidis {
+        font-size: 1.5em;
+        width: 49%;
+    }
+    .homepage-hero-section-b .homepage-hero-content h1 .spans {
+        width: 8em;
+    }
+    .homepage-hero-section-b .homepage-hero-content h2 {
+        margin: 60px 0 0 0;
+    }
+    .homepage-hero-section-b .homepage-hero-content {
+        margin-top: 0;
+    }
+}

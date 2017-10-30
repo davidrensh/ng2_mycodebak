@@ -1,0 +1,42 @@
+<div fxFlexAlign="center" fxLayout="column" [style.height.px]="450" fxLayoutAlign="center center">
+    <md-card style="background-color:#fafafa" [style.width.px]="250" [style.height.px]="300">
+        <md-card-title fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>Free quote for your moving</span></md-card-title>
+        <md-card-content>
+            <form *ngIf="!isLoggedin" class="login-form" fxLayout="column" fxLayoutAlign="space-around center">
+                <md-input-container class="example-full-width">
+                    <input mdInput required [(ngModel)]="phoneemail" name="phoneemail" placeholder="Phone or Email">
+                </md-input-container>
+                <md-input-container *ngIf="isEmail() || !!confirmationResult" class="example-full-width">
+                    <input mdInput required (keyup.enter)="login()" type="password" [(ngModel)]="password" name="password" placeholder="Password">
+                </md-input-container>
+                <div id="recaptcha-container" data-size="invisible"></div>
+            </form>
+            <form class="login-form" fxLayout="column" fxLayoutAlign="space-around center">
+                <md-input-container class="example-full-width">
+                    <input mdInput [(ngModel)]="email" name="email" required placeholder="Email">
+                </md-input-container>
+                <md-input-container class="example-full-width">
+                    <input mdInput required [(ngModel)]="phone" name="phone" placeholder="Phone">
+                </md-input-container>
+
+                <md-input-container class="example-full-width">
+                    <input mdInput required (keyup.enter)="login()" type="password" [(ngModel)]="password" name="password" placeholder="Password">
+                </md-input-container>
+            </form>
+            <!-- <div fxLayout="row" fxLayoutAlign="end center"><button md-button (click)="isRegister = true;">Register</button> <button md-button (click)="forget()">Forget password?</button></div> -->
+            <span *ngIf='errmsg' [style.color]="'red'"> {{errmsg}}</span>
+        </md-card-content>
+        <md-card-actions>
+            <!--<div md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">-->
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <!-- <button color="primary" md-raised-button (click)="login()">NEXT</button> -->
+                <!-- <button color="primary" md-raised-button (click)="verify()">Verify</button> -->
+                <!--<button color="accent" md-raised-button (click)="dialogRef.close('Cancel')">Cancel</button>-->
+                <!--</div>-->
+                <!--<div md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center"> Or </div>-->
+                <!--<div md-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">-->
+                <!-- <button color="primary" md-button (click)="biz()">Business Account</button> -->
+            </div>
+        </md-card-actions>
+    </md-card>
+</div>

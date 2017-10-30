@@ -1,0 +1,11 @@
+{
+    "name": "Contract A 5 Star",
+    "short_name": "CA5S",
+    "icons": [{
+        "src": "assets/reward.png",
+        "sizes": "192x192",
+        "type": "image\/png"
+    }],
+    "display": "standalone",
+    "start_url": "./?utm_source=web_app_manifest"
+}

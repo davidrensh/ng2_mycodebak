@@ -1,0 +1,128 @@
+/*body {
+   
+    font-family: "Knockout 48 A", "Knockout 48 B", Arial, sans-serif !important;
+}*/
+
+md-sidenav-layout.m2app-dark {
+    background: black;
+}
+
+.app-content {
+    padding: 20px;
+}
+
+.app-content md-card {
+    margin: 20px;
+}
+
+.app-sidenav {
+    padding: 10px;
+    min-width: 100px;
+}
+
+.app-content md-checkbox {
+    margin: 10px;
+}
+
+.app-toolbar-filler {
+    flex: 1 1 auto;
+}
+
+.app-toolbar-menu {
+    padding: 0 14px 0 14px;
+    color: white;
+}
+
+.app-icon-button {
+    box-shadow: none;
+    user-select: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    filter: none;
+    font-weight: normal;
+    height: auto;
+    line-height: inherit;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+}
+
+.app-action {
+    display: inline-block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.app-spinner {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+}
+
+.app-input-icon {
+    font-size: 16px;
+}
+
+.app-list {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    width: 350px;
+    margin: 20px;
+}
+
+.app-progress {
+    margin: 20px;
+}
+
+.remaining-space {
+    flex: 1 1 auto;
+}
+
+.s-card {
+    /*width: 200px;*/
+    padding: 0px;
+}
+
+.s-cardc {
+    padding: 1px;
+    /*width: 250px;*/
+    margin: 2px;
+}
+
+.sidenav-content {
+    height: 1024px;
+}
+
+.big-nav-link {
+    /*font-size: 18;*/
+    text-decoration: none;
+}
+
+[_nghost-c2] {
+    display: block;
+    padding: 0px;
+    margin: 0px;
+    width: 182px;
+}
+
+[_nghost-c2] .td-expansion-panel-header[_ngcontent-c2] {
+    /*border: 1px solid grey;*/
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    width: 180px;
+}
+
+[_nghost-c2] .td-expansion-panel-header[_ngcontent-c2] .td-expansion-panel-header-content[_ngcontent-c2] {
+    height: 36px !important;
+    padding: 0 6px !important;
+}
+
+.mat-sidenav-transition .mat-sidenav {
+    width: 182x;
+}
+
+md-sidenav {
+    width: 182px;
+}

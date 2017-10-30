@@ -1,0 +1,39 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>Store setup</h2>
+
+    <div>
+        <span *ngIf="errmsg" [style.color]="'red'"> {{errmsg}}</span>
+        <md-input-container>
+            <input mdInput required [(ngModel)]="name" name="name" placeholder="Name">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput required [(ngModel)]="id" name="id" placeholder="ID">
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container>
+            <input mdInput required [(ngModel)]="mainapiKey" name="mainapiKey" placeholder="mainapiKey">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput required [(ngModel)]="mainauthDomain" name="mainauthDomain" placeholder="mainauthDomain">
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container>
+            <input type="url" mdInput required [(ngModel)]="maindatabaseURL" name="maindatabaseURL" placeholder="maindatabaseURL">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput required [(ngModel)]="mainstorageBucket" name="mainstorageBucket" placeholder="mainstorageBucket">
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container>
+            <input mdInput required [(ngModel)]="city" name="city" placeholder="City">
+        </md-input-container>
+        <md-input-container>
+            <input type="url" mdInput required [(ngModel)]="url" name="url" placeholder="Url">
+        </md-input-container>
+    </div>
+
+    <button color="primary" md-raised-button (click)="save()">Save</button>
+</div>

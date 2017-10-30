@@ -1,0 +1,56 @@
+<div fxLayout="column" [style.height.px]="450" fxLayoutAlign="start center">
+    <h2 style='color:darkgoldenrod;'>Branch setup</h2>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <table mdSort (mdSortChange)="sortData($event)">
+            <tbody style="height:260px">
+                <tr *ngIf="errmsg" [style.color]="'red'"> {{errmsg}}</tr>
+                <tr>
+                    <td class="s" md-sort-header="name">Name
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td class="s" md-sort-header="locationID">ID
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td class="s" md-sort-header="category">Category
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td class="s" md-sort-header="city">City
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="s" contenteditable [ceDefault]="''" [ceModel]="name" (ceChange)="name=$event"></td>
+                    <td class="s" contenteditable [ceDefault]="''" [ceModel]="locationID" (ceChange)="locationID=$event"></td>
+                    <td>
+                        <md-select placeholder="Category" [(ngModel)]="category" name="category">
+                            <md-option *ngFor="let v of cats" [value]="v">
+                                {{v}}
+                            </md-option>
+                        </md-select>
+                    </td>
+                    <td class="s" contenteditable [ceDefault]="city" [ceModel]="city" (ceChange)="city=$event"></td>
+                    <td>
+                        <md-icon mdTooltip="Fill and add this record" (click)="addRow($event)" style="color:green;">add</md-icon>
+                    </td>
+                </tr>
+                <tr *ngFor="let o of data">
+                    <td class="s">
+                        <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'name')">{{o.name}}</span></td>
+                    <td class="s" contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'locationID')">{{o.locationID}}</td>
+                    <td>
+                        <md-select (change)="leave($event,o,'category')" placeholder="" [(ngModel)]="o.category" name="scategory">
+                            <md-option *ngFor="let v of cats" [value]="v">
+                                {{v}}
+                            </md-option>
+                        </md-select>
+                    </td>
+                    <td class="s" contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'city')">{{o.city ? o.city : ''}}</td>
+                    <td>
+                        <md-icon mdTooltip="Delete this record" style="color:red;" (click)="delete(o)">clear</md-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

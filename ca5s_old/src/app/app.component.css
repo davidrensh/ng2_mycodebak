@@ -1,0 +1,33 @@
+.demo-sidenav-content {
+    padding: 3px;
+    min-height: 600px;
+}
+
+.demo {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+md-list,
+md-nav-list {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    width: 250px;
+    margin: 1px 1px 0 0;
+}
+
+h2,h3,h5 {
+    margin-top: 5px;
+}
+
+md-icon {
+    color: rgba(0, 0, 0, 0.12);
+}
+
+md-list-icon {
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.demo-secondary-text {
+    color: rgba(0, 0, 0, 0.54);
+}

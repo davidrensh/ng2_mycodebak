@@ -1,0 +1,167 @@
+<button [mdMenuTriggerFor]="menu" style="background-color:#3949ab;color:#e8eaf6; top:8px;right:8px;position:absolute;z-index: 9999" color="" md-mini-fab fxShow fxHide.xl="true" fxHide.lg="true" fxHide.md="true"><md-icon>menu</md-icon></button>
+<md-toolbar style="background-color:#9fa8da" fxShow fxHide.xs="true" fxHide.sm="true" class="mat-elevation-z5" color="">
+    <div [style.color]="'darkgoldenrod'">
+        <i [style.color]="'darkgoldenrod'" class="material-icons">local_shipping</i>Canadian Movers
+    </div>
+    <span style="flex: 1 1 auto;color:#283593;font-size:14px;" xLayout="row" fxLayoutAlign="center center">{{(isLoggedin && membername) ? 'Welcome ' + membername: ''}}</span>
+    <div flex fxLayout="row" fxLayoutAlign="end center">
+        <div *ngIf="isCustomer">
+            <button fxLayout="row" fxLayoutAlign="start center" md-menu-item [routerLink]="['/quote']">
+              <md-icon style="color:#ff8f00;height:40px;line-height:32px"><i style="font-size:20px" class="fa fa-calculator"></i></md-icon>
+          <span>Free Quote</span>
+          </button></div>
+        <div *ngIf="isCustomer" fxLayout="row"><button md-menu-item [routerLink]="['/movers']">
+          <md-icon style="color:#2e7d32">group</md-icon>
+          <span>Movers</span>
+          <a *ngIf="newsNewCount" color="warn" md-mini-fab style="width:20px;height:20px;line-height:20px;font-size:10px">{{newsNewCount}}</a>
+          </button></div>
+        <div *ngIf="isAdmin"><button md-menu-item [routerLink]="['/requests']" fxLayout="row" fxLayoutAlign="start center">
+           <md-icon style="color:#e64a19;">pan_tool</md-icon>
+         Requests
+        </button>
+        </div>
+        <div *ngIf="isAdmin"><button md-menu-item [routerLink]="['/tasks']" fxLayout="row" fxLayoutAlign="start center">
+          <md-icon style="color:#2e7d32;">assignment</md-icon>
+         Tasks
+       </button>
+        </div>
+        <div *ngIf="isAdmin" fxLayout="row" fxLayoutAlign="start center">
+            <md-icon color="primary">business</md-icon>
+            <button md-menu-item [mdMenuTriggerFor]="storemenu">Management</button>
+        </div>
+        <div *ngIf="isMover"><button md-menu-item [routerLink]="['/mytasks']" fxLayout="row" fxLayoutAlign="start center">
+          <md-icon style="color:#2e7d32;">assignment</md-icon>
+         My Task
+       </button>
+        </div>
+        <!-- <div *ngIf="isMover"><button md-menu-item [routerLink]="['/myhist']" fxLayout="row" fxLayoutAlign="start center">
+          <md-icon style="color:#2e7d32;">history</md-icon>
+         History
+       </button>
+        </div> -->
+        <div *ngIf="isMover"><button md-menu-item [routerLink]="['/profile']" fxLayout="row" fxLayoutAlign="start center">
+          <md-icon style="color:#2e7d32;">account_circle</md-icon>
+          Profile
+       </button>
+        </div>
+        <div *ngIf="isCustomer"><button md-menu-item [routerLink]="['/tracking']">
+          <md-icon style="color:#3949ab">history</md-icon>
+          <span>Tracking</span>
+          </button></div>
+        <div *ngIf="isCustomer"><button md-menu-item [routerLink]="['/myprofile']">
+            <md-icon style="color:#5c6bc0">account_circle</md-icon>
+            <span>Profile</span>
+            </button></div>
+        <div><button md-menu-item [routerLink]="['/about']">
+          <md-icon style="color:#3f51b5">info</md-icon>
+          Contact
+        </button></div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <md-icon color="{{!isLoggedin ? 'warn' : 'primary' }}">{{!isLoggedin ? 'lock_open' : 'lock_outline' }}</md-icon>
+            <button *ngIf="!isLoggedin; else logoutbtn2" md-menu-item [routerLink]="['/login']">
+          {{!isLoggedin ? 'Login' : 'Logout' }}
+          </button>
+            <ng-template #logoutbtn2>
+                <button md-menu-item (click)="logout()">
+               {{!isLoggedin ? 'Login' : 'Logout' }}
+              </button>
+            </ng-template>
+        </div>
+    </div>
+</md-toolbar>
+<md-menu #storemenu="mdMenu">
+    <button md-menu-item [routerLink]="['/employee']">
+  <md-icon style="color:blue">people_outline</md-icon>
+  <span>Employee</span>
+</button>
+    <button md-menu-item [routerLink]="['/reports']">
+  <md-icon style="color:green">assessment</md-icon>
+  <span>Reports</span>
+</button>
+    <button *ngIf="isAdmin" md-menu-item [routerLink]="['/company']">
+  <md-icon style="color:red">store</md-icon>
+  <span>Company</span>
+</button>
+    <button md-menu-item [routerLink]="['/branch']">
+  <md-icon style="color:green">call_split</md-icon>
+  <span>Branch</span>
+</button>
+    <button md-menu-item [routerLink]="['/changepassword']">
+<md-icon style="color:blue">vpn_key</md-icon>
+<span>Change Password</span>
+</button>
+</md-menu>
+<md-menu #menu="mdMenu">
+    <button *ngIf="isCustomer" md-menu-item [routerLink]="['/quote']">
+      <md-icon style="color:#e64a19;height:40px;line-height:32px"><i style="font-size:20px" class="fa fa-calculator"></i></md-icon>
+      <span>Free Quote</span>
+    </button>
+    <button *ngIf="isCustomer" md-menu-item [routerLink]="['/movers']">
+      <md-icon style="color:#2e7d32">group</md-icon>
+      <span>Movers</span>
+    <a *ngIf="newsNewCount" color="warn" md-mini-fab style="width:20px;height:20px;line-height:20px;font-size:10px">{{newsNewCount}}</a>
+  </button>
+    <button *ngIf="isAdmin" md-menu-item [routerLink]="['/requests']">
+      <md-icon style="color:#e64a19;">pan_tool</md-icon>
+      Requests
+    <a *ngIf="flyersNewCount" color="warn" md-mini-fab style="width:20px;height:20px;line-height:20px;font-size:10px">{{flyersNewCount}}</a>
+  </button>
+    <button *ngIf="isAdmin" md-menu-item [routerLink]="['/tasks']">
+    <md-icon style="color:#2e7d32;">assignment</md-icon>
+    Tasks
+</button>
+    <button *ngIf="isAdmin" md-menu-item [routerLink]="['/employee']">
+  <md-icon style="color:blue">people_outline</md-icon>
+  <span>Employee</span>
+</button>
+    <button *ngIf="isAdmin" md-menu-item [routerLink]="['/reports']">
+  <md-icon style="color:green">assessment</md-icon>
+  <span>Reports</span>
+</button>
+    <button *ngIf="isAdmin" md-menu-item [routerLink]="['/company']">
+  <md-icon style="color:red">store</md-icon>
+  <span>Company</span>
+</button>
+    <button *ngIf="isAdmin" md-menu-item [routerLink]="['/branch']">
+  <md-icon style="color:green">call_split</md-icon>
+  <span>Branch</span>
+</button>
+    <button md-menu-item [routerLink]="['/changepassword']">
+<md-icon style="color:blue">vpn_key</md-icon>
+<span>Change Password</span>
+</button>
+    <button *ngIf="isMover" md-menu-item [routerLink]="['/mytasks']" fxLayout="row" fxLayoutAlign="start center">
+  <md-icon style="color:#2e7d32;">assignment</md-icon>
+ My Task
+</button>
+    <!-- <button *ngIf="isMover" md-menu-item [routerLink]="['/hist']" fxLayout="row" fxLayoutAlign="start center">
+  <md-icon style="color:#2e7d32;">history</md-icon>
+ History
+</button> -->
+    <button *ngIf="isMover" md-menu-item [routerLink]="['/profile']" fxLayout="row" fxLayoutAlign="start center">
+  <md-icon style="color:#2e7d32;">account_circle</md-icon>
+  Profile
+</button>
+    <button *ngIf="isCustomer" md-menu-item [routerLink]="['/tracking']">
+    <md-icon style="color:#3949ab">history</md-icon>
+    <span>Tracking</span>
+  </button>
+    <button *ngIf="isCustomer" md-menu-item [routerLink]="['/myprofile']">
+    <md-icon style="color:#5c6bc0">account_circle</md-icon>
+    <span>Profile</span>
+  </button>
+    <button md-menu-item [routerLink]="['/about']">
+    <md-icon style="color:#3f51b5">info</md-icon>
+    <span>Contact</span>
+  </button>
+    <button *ngIf="!isLoggedin" md-menu-item [routerLink]="['/login']">
+    <md-icon style="color:red">{{!isLoggedin ? 'lock_open' : 'lock_outline' }}</md-icon>
+    <span>{{!isLoggedin ? 'Login' : 'Logout' }}</span>
+  </button>
+    <button *ngIf="isLoggedin" md-menu-item (click)="logout()">
+    <md-icon style="color:blue">{{!isLoggedin ? 'lock_open' : 'lock_outline' }}</md-icon>
+    <span>{{!isLoggedin ? 'Login' : 'Logout' }}</span>
+  </button>
+</md-menu>
+
+<router-outlet></router-outlet>

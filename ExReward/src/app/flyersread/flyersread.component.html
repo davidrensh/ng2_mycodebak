@@ -1,0 +1,24 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <md-tab-group fxHide.xs="true" fxHide.sm="true" style="width:800px;height:550px;border:1px solid darkgray;">
+        <md-tab *ngFor="let v of pages; let i = index;">
+            <ng-template md-tab-label>
+                {{i + 1}} / {{pages.length}}&nbsp;
+            </ng-template>
+            <div *ngIf="isHtml(v.des);else plaintext" [innerHtml]="v.des | safeHtml"></div>
+            <ng-template #plaintext>{{v.des}}</ng-template>
+        </md-tab>
+    </md-tab-group>
+    <md-tab-group fxHide.xl="true" fxHide.lg="true" fxHide.md="true" style="width:360px;height:550px;border:1px solid darkgray;">
+        <md-tab *ngFor="let v of pages; let i = index;">
+            <ng-template md-tab-label>
+                {{i + 1}} / {{pages.length}}&nbsp;
+            </ng-template>
+            <div *ngIf="isHtml(v.des);else plaintext" [innerHtml]="v.des | safeHtml"></div>
+            <ng-template #plaintext>{{v.des}}</ng-template>
+        </md-tab>
+    </md-tab-group>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <md-icon (click)="like()" color="accent">favorite_border</md-icon>{{likeNum}}&nbsp;&nbsp;&nbsp;&nbsp;
+        <md-icon (click)="openSnackBar()" color="primary">share</md-icon>
+    </div>
+</div>

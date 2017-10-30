@@ -1,0 +1,6 @@
+.chk-section {
+    display: flex;
+    align-content: left;
+    align-items: left;
+    height: 24px;
+}

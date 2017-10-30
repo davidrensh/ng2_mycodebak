@@ -1,0 +1,90 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>Flyers management</h2>
+    <md-tab-group>
+        <md-tab>
+            <ng-template md-tab-label>
+                Edit news
+            </ng-template>
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <md-input-container>
+                        <input style="min-width: 300px" mdInput required [(ngModel)]="title" name="title" placeholder="Title">
+                    </md-input-container>
+                    <md-tab-group style="width:500px;height:300px;border:1px solid darkgray;">
+                        <md-tab label="New page">
+                            <div fxLayout="column" fxLayoutAlign="center center" style="border:1px solid darkgray;">
+                                <md-input-container>
+                                    <textarea rows="8" cols="50" mdInput required [(ngModel)]="des" name="des" placeholder="Description (text/html)"></textarea>
+                                </md-input-container>
+                                <button *ngIf="title && des" color="primary" md-raised-button (click)="addPage()">Add The Page
+                                   <md-icon mdTooltip="Add this page" style="color:red;">add</md-icon>
+                                </button>
+                            </div>
+                        </md-tab>
+                        <md-tab *ngFor="let v of pages; let i = index;">
+                            <ng-template md-tab-label>
+                                {{i + 1}} / {{pages.length}}&nbsp;
+                                <md-icon (click)="deletePage(i)" mdTooltip="Delete this page" style="color:red;">clear</md-icon>
+                            </ng-template>
+                            <md-input-container>
+                                <textarea rows="10" cols="50" mdInput required [(ngModel)]="v.des" name="vdes" placeholder="Description (text/html)"></textarea>
+                            </md-input-container>
+                        </md-tab>
+                    </md-tab-group>
+                </div>
+                &nbsp;
+                <button *ngIf="title && pages.length > 0" color="primary" md-raised-button (click)="save()">Send Flyers</button>
+            </div>
+        </md-tab>
+        <md-tab label="Preview">
+            <ng-template md-tab-label>
+                Preview
+            </ng-template>
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <div style="width:500px;height:380px;border:1px solid darkgray;">
+                    <div fxLayout="row" fxLayoutAlign="space-around end">
+                        <span style="font-size:25px">{{title}}</span>&nbsp;
+                        <div fxLayout="row">
+                            <span style="font-size:14px">({{store}})</span>&nbsp;
+                            <md-icon color="accent" class="fa fa-heart fa-lg"></md-icon>&nbsp;
+                            <md-icon color="primary" class="fa fa-share fa-lg"></md-icon>
+                        </div>
+                    </div>
+                    &nbsp;
+                    <md-tab-group style="width:500px;height:300px;border:1px solid darkgray;">
+                        <md-tab *ngFor="let v of pages; let i = index;">
+                            <ng-template md-tab-label>
+                                {{i + 1}} / {{pages.length}}&nbsp;
+                                <md-icon (click)="deletePage(i)" mdTooltip="Delete this page" style="color:red;">clear</md-icon>
+                            </ng-template>
+                            <div *ngIf="isHtml(v.des);else plaintext" [innerHtml]="v.des | safeHtml"></div>
+                            <ng-template #plaintext>{{v.des}}</ng-template>
+                        </md-tab>
+                    </md-tab-group>
+                    &nbsp;
+                </div>
+                <button *ngIf="title && pages.length > 0" color="primary" md-raised-button (click)="save()">Send Flyers</button>
+            </div>
+        </md-tab>
+        <md-tab label="History">
+            <table *ngIf="hist" mdSort (mdSortChange)="sortData($event)">
+                <tbody style="height:260px">
+                    <tr>
+                        <th md-sort-header="title">Title</th>
+                        <th md-sort-header="publishedby">Published By</th>
+                        <th md-sort-header="$key">Datetime </th>
+                    </tr>
+
+                    <tr *ngFor="let o of hist |async">
+                        <td style="width:350px; word-wrap:break-word;">{{o.title}}</td>
+                        <td>{{o.publishedby}}</td>
+                        <td>{{getDTString(o.$key)}}</td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Total flyers: {{(hist | async)?.length}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </md-tab>
+    </md-tab-group>
+</div>

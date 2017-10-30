@@ -1,0 +1,22 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <h2 style='color:darkgoldenrod;'>ExReward. Savings <span style="color:red">daily</span> spending</h2>
+    <button fxHide.xs="true" fxHide.sm="true" [routerLink]="['/' + (o.location ? 'newsread' : 'flyersread') ,o.$key]" md-button *ngFor="let o of allNewsFlyers | async" fxLayout="row" style="width:520px;">
+      <md-icon *ngIf="!o.location" color="warn"><i style="font-size:20px" class="fa fa-newspaper-o"></i></md-icon>
+      <md-icon *ngIf="o.location" color="primary">description</md-icon>
+      <span style="font-size:14px">{{o.title.substring(0,36)}}</span>
+      <span style="font-size:12px">{{o.location}} ({{o.store}}) {{getDTString(o.$key)}}</span>
+      <md-icon color="accent">favorite_border</md-icon>{{o.likes}}
+      <!-- <md-icon tooltip="Read now" color="warn">visibility</md-icon> -->
+    </button>
+    <button fxHide.xl="true" fxHide.lg="true" fxHide.md="true" [routerLink]="['/' + (o.location ? 'newsread' : 'flyersread') ,o.$key]" md-button *ngFor="let o of allNewsFlyers| async" fxLayout="column" style="width:375px;">
+      <div  fxLayout="row"><md-icon *ngIf="!o.location" color="warn"><i style="font-size:20px" class="fa fa-newspaper-o"></i></md-icon>
+      <md-icon *ngIf="o.location" color="primary">description</md-icon>
+      <span style="font-size:14px">{{o.title.substring(0,36)}}</span> 
+      </div>
+      <div  fxLayout="row" fxLayoutAlign="start center">
+      <span style="width:330px;text-align:left;font-size:12px">{{o.location}} ({{o.store}}) {{getDTString(o.$key)}}</span>
+      <md-icon style="font-size:14px;width:14px;height:14px" color="accent">favorite_border</md-icon>{{o.likes}}
+      </div>
+      <!-- <md-icon tooltip="Read now" color="warn">visibility</md-icon> -->
+    </button>
+</div>

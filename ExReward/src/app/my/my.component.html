@@ -1,0 +1,33 @@
+<div fxFlexAlign="center" fxLayout="column" [style.height.px]="450" fxLayoutAlign="center center">
+    <md-card [style.height.px]="300">
+        <md-card-title fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>My History</span></md-card-title>
+        <md-card-content>
+            <table mdSort (mdSortChange)="sortData($event)">
+                <tbody>
+                    <tr>
+                        <!-- <th md-sort-header="e">Member ID </th> -->
+                        <th md-sort-header="$key">Business Name</th>
+                        <th md-sort-header="b" style="text-align: right;">Total Points </th>
+                    </tr>
+                    <tr *ngFor="let o of data">
+                        <!-- <td>{{toEmail(o.e)}}</td> -->
+                        <td><a color="primary" [ngStyle]="{'font-weight': 'bold'}" href="{{o.url}}/hist/{{memberID}}/{{o.$key}}" target="_blank">
+                            {{o.$key}}
+                        </a>
+                        </td>
+                        <td style="text-align: right;">{{o.b}}</td>
+                        <td>
+                            <a md-button href="{{o.url}}/hist/{{memberID}}/{{o.$key}}" target="_blank">
+                                <md-icon tooltip="Read my data" color="warn">arrow_forward</md-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="text-align: right;">Count: {{totalCount}}</th>
+                        <th style="text-align: right;">Subtotal: {{totalPoints}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </md-card-content>
+    </md-card>
+</div>

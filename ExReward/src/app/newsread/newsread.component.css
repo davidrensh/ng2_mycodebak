@@ -1,0 +1,7 @@
+::ng-deep snack-bar-container.snackbar-class {
+    background: white;
+}
+
+ ::ng-deep .snackbar-class .mat-simple-snackbar {
+    /* color: green; */
+}

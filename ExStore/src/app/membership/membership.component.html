@@ -1,0 +1,52 @@
+<div fxLayout="column" [style.height.px]="450" fxLayoutAlign="start center">
+    <h2 style='color:darkgoldenrod;'>Membership setup</h2>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <table mdSort (mdSortChange)="sortData($event)">
+            <tbody style="height:260px">
+                <tr *ngIf="errmsg" [style.color]="'red'"> {{errmsg}}</tr>
+                <tr>
+                    <td md-sort-header="name">Name
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td md-sort-header="dpoints">$Points
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td md-sort-header="regFee">$Register
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td md-sort-header="renewFee">$Renew
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td md-sort-header="lifetime">Lifetime
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input style="width:70px" mdInput type="text" required [(ngModel)]="name" name="name" placeholder="Name"></td>
+                    <td><input style="width:70px" mdInput type="number" required [(ngModel)]="dpoints" name="dpoints" placeholder="$Points"></td>
+                    <td><input style="width:70px" mdInput type="number" required [(ngModel)]="regFee" name="regFee" placeholder="Register Fee"></td>
+                    <td><input style="width:70px" mdInput type="number" required [(ngModel)]="renewFee" name="renewFee" placeholder="Renew Fee"></td>
+                    <td>
+                        <md-checkbox [(ngModel)]="lifetime"></md-checkbox>
+                    </td>
+                    <td>
+                        <md-icon mdTooltip="Fill and add this record" (click)="addRow($event)" style="color:green;">add</md-icon>
+                    </td>
+                </tr>
+                <tr *ngFor="let o of data">
+                    <td contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'name')">{{o.name}}</td>
+                    <td contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'dpoints')">{{o.dpoints}}</td>
+                    <td contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'regFee')">{{o.regFee}}</td>
+                    <td contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'renewFee')">{{o.renewFee}}</td>
+                    <td>
+                        <md-checkbox (change)="leave($event,o,'lifetime')" [(ngModel)]="o.lifetime"></md-checkbox>
+                    </td>
+                    <td>
+                        <md-icon mdTooltip="Delete this record" style="color:red;" (click)="delete(o)">clear</md-icon>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

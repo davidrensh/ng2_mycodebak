@@ -1,0 +1,20 @@
+<mat-form-field style="width: 120px;">
+    <mat-select placeholder="Province" (change)="getCities(selectedProvince)" [(ngModel)]="selectedProvince">
+        <mat-option *ngFor="let t of provinces" [value]="t.a">
+            {{t.name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field style="width: 120px;">
+    <mat-select placeholder="City" [(ngModel)]="selectedCity">
+        <mat-option *ngFor="let t of cities" [value]="t.city">
+            {{t.city}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field style="width: 80px;">
+    <input matInput placeholder="Post Code" [(ngModel)]="postcode">
+</mat-form-field>
+<mat-form-field style="width: 180px;">
+    <input matInput placeholder="Address" [(ngModel)]="address">
+</mat-form-field>

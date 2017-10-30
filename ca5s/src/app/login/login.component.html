@@ -1,0 +1,29 @@
+<div fxFlexAlign="center" fxLayout="column" [style.height.px]="450" fxLayoutAlign="center center">
+    <mat-card [style.width.px]="250" [style.height.px]="300">
+        <mat-card-title fxLayout="row" fxLayoutAlign="center"><span style='color:darkgoldenrod;'>Sign in</span></mat-card-title>
+        <mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="space-around center">
+                <mat-input-container>
+                    <input matInput required [(ngModel)]="phoneemail" name="phoneemail" placeholder="Phone or Email">
+                </mat-input-container>
+                <mat-input-container *ngIf="isEmail() || !!confirmationResult">
+                    <input matInput required (keyup.enter)="login()" type="password" [(ngModel)]="password" name="password" placeholder="Password">
+                </mat-input-container>
+                <div id="recaptcha-container" data-size="invisible"></div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <button mat-button (click)="forget()">Forget password?</button></div>
+            <span *ngIf='errmsg' [style.color]="'red'"> {{errmsg}}</span>
+        </mat-card-content>
+        <mat-card-actions>
+            <!--<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">-->
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <button *ngIf="!(confirmationResult && !isEmail() && !isRegister)" color="primary" mat-raised-button (click)="login()">NEXT</button>
+                <button *ngIf="!!confirmationResult" color="primary" mat-raised-button (click)="verify()">Verify</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<!-- <div *ngIf="isLoggedin">
+    <button color="primary" mat-raised-button (click)="logout()">Logout</button>
+</div> -->
