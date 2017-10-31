@@ -1,20 +1,160 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
-  </li>
-</ul>
+<mat-toolbar fxShow fxHide.xl="true" fxHide.lg="true" fxHide.md="true">
+    <div>
+        <button mat-button (click)="status = !status; sidenav.open(); " mat-icon-button><mat-icon style="color:gray">menu</mat-icon></button> &ngsp;
+        <button mat-button [routerLink]="['']"> <img src="../../assets/5sexp.jpg" height="24px" style="opacity: 1.0;filter: alpha(opacity=50);"> &ngsp;
+              UniwayShop</button>
+    </div>
+    <span style="flex: 1 1 auto;color:#283593" xLayout="row" fxLayoutAlign="center center">{{(isLoggedin && employeeO) ? employeeO.id: ''}}</span>
+    <div flex fxLayout="row" fxLayoutAlign="end center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <button mat-button [routerLink]="['/services']">Services</button> </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <button mat-button [routerLink]="['/quote/false']">Estimate</button> </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <button mat-button *ngIf="!isLoggedin; else logoutbtn2" [routerLink]="['/login']">
+          {{!isLoggedin ? 'Sign in' : 'SIGN OUT' }}
+          </button>
+            <ng-template #logoutbtn2>
+                <button mat-button (click)="logout()">
+               {{!isLoggedin ? 'Sign in' : 'SIGN OUT' }}
+              </button>
+            </ng-template>
+        </div>
+    </div>
+</mat-toolbar>
 
+<mat-toolbar fxShow fxHide.xs="true" fxHide.sm="true">
+    <div>
+        <button mat-button (click)="status = !status; sidenav.open(); " mat-icon-button><mat-icon style="color:gray">menu</mat-icon></button> &ngsp;
+        <button mat-button [routerLink]="['']"> <img src="../../assets/5sexp.jpg" height="24px" style="opacity: 1.0;filter: alpha(opacity=50);"> &ngsp;
+          UniwayShop</button>
+    </div>
+    <span style="flex: 1 1 auto;color:#283593" xLayout="row" fxLayoutAlign="center center">{{(isLoggedin && employeeO) ? 'Welcome ' + employeeO.id: ''}}</span>
+    <div flex fxLayout="row" fxLayoutAlign="end center">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <button mat-button [routerLink]="['/services']">Services</button> </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <button mat-button [routerLink]="['/quote/false']">Estimate</button> </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+
+            <button mat-button *ngIf="!isLoggedin; else logoutbtn2" [routerLink]="['/login']">
+          {{!isLoggedin ? 'Sign In' : 'Sign Out' }}
+          </button>
+            <ng-template #logoutbtn2>
+                <button mat-button (click)="logout()">
+               {{!isLoggedin ? 'Sign In' : 'Sign Out' }}
+              </button>
+            </ng-template>
+        </div>
+    </div>
+</mat-toolbar>
+<mat-sidenav-container style="min-height:600px">
+    <mat-sidenav #sidenav>
+        <mat-expansion-panel [expanded]="menulevel === 0" (opened)="menulevel = 0">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Customers
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+                <a mat-list-item>
+                    <button mat-button [routerLink]="['/quote/false']"> <mat-icon>home</mat-icon><span>Residential</span></button>
+                </a>
+                <a mat-list-item>
+                    <button mat-button [routerLink]="['/quote/true']"><mat-icon>business</mat-icon><span>Commercial</span></button>
+                </a>
+                <a mat-list-item>
+                    <button mat-button [routerLink]="['/mystatus']"><mat-icon color="primary">track_changes</mat-icon><span>Project Status</span></button>
+                </a>
+                <a mat-list-item>
+                    <button mat-button [routerLink]="['/mysetting']">         
+                      <mat-icon>settings</mat-icon>                                        
+                      <span>My Setting</span>
+                   </button>
+                </a>
+            </mat-list>
+
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="menulevel === 1" (opened)="menulevel = 1">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Contractors / Trades
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+
+                <a mat-list-item>
+                    <mat-icon>group_add</mat-icon>
+                    <button mat-button [routerLink]="['/join']">                          
+                              <span>Join Now</span>
+                           </button>
+                </a>
+                <a mat-list-item>
+                    <mat-icon>list</mat-icon>
+                    <button mat-button [routerLink]="['/jobs']">                          
+                      <span>Jobs Listing</span>
+                   </button>
+                </a>
+                <a mat-list-item>
+                    <mat-icon>schedule</mat-icon>
+                    <button mat-button [routerLink]="['/schedule']">                          
+                      <span>My Schedule</span>
+                   </button>
+                </a>
+                <a mat-list-item>
+                    <mat-icon>assessment</mat-icon>
+                    <button mat-button [routerLink]="['/reports']">                          
+                      <span>Reports</span>
+                   </button>
+                </a>
+                <a mat-list-item>
+                    <mat-icon style="color:#5c6bc0">account_circle</mat-icon>
+                    <button mat-button [routerLink]="['/myprofile']">
+                      <span>Profile</span>
+                  </button>
+                </a>
+            </mat-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    More
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+                <!-- <a mat-list-item>
+                  <mat-icon color="{{!isLoggedin ? 'warn' : 'primary' }}">{{!isLoggedin ? 'lock_open' : 'lock_outline' }}</mat-icon>
+                  <button mat-button [routerLink]="['/signin']">                          
+                      <span>Sign In</span>
+                   </button>
+              </a> -->
+                <a mat-list-item>
+                    <mat-icon>check_circle</mat-icon>
+                    <button mat-button [routerLink]="['/why']">                          
+                      <span>Why CA5S</span>
+                   </button>
+                </a>
+                <a mat-list-item>
+                    <mat-icon>contact_mail</mat-icon>
+                    <button mat-button [routerLink]="['/contact']">                          
+                      <span>Contact Us</span>
+                   </button>
+                </a>
+                <a mat-list-item>
+                    <mat-icon>people_outline</mat-icon>
+                    <button mat-button [routerLink]="['/joined']">                          
+                      <span>Joined Contractors</span>
+                   </button>
+                </a>
+            </mat-list>
+        </mat-expansion-panel>
+
+
+    </mat-sidenav>
+
+    <div>
+
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>

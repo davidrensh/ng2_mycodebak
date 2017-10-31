@@ -1,0 +1,30 @@
+.disable-whole-div__myDIV {
+    /* overflow: scroll; */
+    height: 100%;
+    margin: 0px;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.disable-whole-div_cover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: #ddd;
+    opacity: 0.3;
+    margin: 0px;
+}
+
+
+/* 
+.disable-whole-div_hcover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-color: #ddd;
+    opacity: 0.3;
+    margin: 0px;
+} */
