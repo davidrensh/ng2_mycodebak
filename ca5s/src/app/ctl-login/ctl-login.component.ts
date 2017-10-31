@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-ctl-login',
-  templateUrl: './ctl-login.component.html',
-  styleUrls: ['./ctl-login.component.css']
+  selector: "app-ctl-login",
+  templateUrl: "./ctl-login.component.html",
+  styleUrls: ["./ctl-login.component.css"]
 })
 export class CtlLoginComponent implements OnInit {
   needFill = false;
-  constructor() { }
+  phone = "";
+  password = "";
 
-  ngOnInit() {
-  }
+  constructor() {}
 
+  ngOnInit() {}
+  login() {}
 }
