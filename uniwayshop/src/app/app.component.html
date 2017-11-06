@@ -63,19 +63,15 @@
                 <a mat-list-item>
                     <button mat-button [routerLink]="['/quote/true']"><mat-icon>business</mat-icon><span>Return</span></button>
                 </a>
-                <a mat-list-item>
+                <!-- <a mat-list-item>
                     <button mat-button [routerLink]="['/mystatus']"><mat-icon color="primary">track_changes</mat-icon><span>Repair</span></button>
-                </a>
-                <a mat-list-item>
-                    <button mat-button [routerLink]="['/mystatus']"><mat-icon color="primary">track_changes</mat-icon><span>Transaction</span></button>
-                </a>
-                <a mat-list-item>
-                    <button mat-button [routerLink]="['/mystatus']"><mat-icon color="primary">track_changes</mat-icon><span>Add Member</span></button>
-                </a>
+                </a> -->
                 <a mat-list-item>
                     <button mat-button [routerLink]="['/mystatus']"><mat-icon color="primary">track_changes</mat-icon><span>Members</span></button>
                 </a>
-
+                <a mat-list-item>
+                    <button mat-button [routerLink]="['/mystatus']"><mat-icon color="primary">track_changes</mat-icon><span>Report</span></button>
+                </a>
                 <a mat-list-item>
                     <button mat-button [routerLink]="['/mysetting']">         
                       <mat-icon>settings</mat-icon>                                        
@@ -88,7 +84,7 @@
         <mat-expansion-panel [expanded]="menulevel === 1" (opened)="menulevel = 1">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Management
+                    Inventory
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-list>
@@ -108,10 +104,15 @@
                 <a mat-list-item>
                     <mat-icon>schedule</mat-icon>
                     <button mat-button [routerLink]="['/schedule']">                          
-                      <span>inventory counting</span>
+                      <span>Inventory counting</span>
                    </button>
                 </a>
-
+                <a mat-list-item>
+                    <mat-icon>schedule</mat-icon>
+                    <button mat-button [routerLink]="['/schedule']">                          
+                      <span>Products</span>
+                   </button>
+                </a>
             </mat-list>
         </mat-expansion-panel>
         <mat-expansion-panel [expanded]="true">
@@ -121,17 +122,16 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-list>
-                <!-- <a mat-list-item>
-                  <mat-icon color="{{!isLoggedin ? 'warn' : 'primary' }}">{{!isLoggedin ? 'lock_open' : 'lock_outline' }}</mat-icon>
-                  <button mat-button [routerLink]="['/signin']">                          
-                      <span>Sign In</span>
-                   </button>
-              </a> -->
-
                 <a mat-list-item>
                     <mat-icon>check_circle</mat-icon>
                     <button mat-button [routerLink]="['/why']">                          
                       <span>Employee</span>
+                   </button>
+                </a>
+                <a mat-list-item>
+                    <mat-icon>contact_mail</mat-icon>
+                    <button mat-button [routerLink]="['/contact']">                          
+                      <span>Branch</span>
                    </button>
                 </a>
                 <a mat-list-item>
@@ -141,15 +141,9 @@
                  </button>
                 </a>
                 <a mat-list-item>
-                    <mat-icon>contact_mail</mat-icon>
-                    <button mat-button [routerLink]="['/contact']">                          
-                      <span>Branch</span>
-                   </button>
-                </a>
-                <a mat-list-item>
                     <mat-icon>people_outline</mat-icon>
                     <button mat-button [routerLink]="['/joined']">                          
-                      <span>Store Setting</span>
+                      <span>System Setting</span>
                    </button>
                 </a>
             </mat-list>
