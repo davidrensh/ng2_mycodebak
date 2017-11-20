@@ -1,0 +1,24 @@
+<mat-card>
+  <h6>Upload photos (Max 10)</h6>
+  <!-- <mat-progress-bar *ngIf="showProgress" mode="indeterminate"></mat-progress-bar> -->
+  <div fxLayout="row" fxLayoutWrap>
+    <div fxFlex *ngFor="let upload of uploads | async">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <img src="{{upload.url}}" style="width:auto;height:72px;border: 1px solid #000; max-width:72px; max-height:72px;">
+        <strong>{{upload.name}}</strong>
+        <button (click)='deleteUpload(upload)' class="button is-danger is-small">Delete</button>
+      </div>
+    </div>
+  </div>
+  <label>
+    <input type="file" class="button" (change)="detectFiles($event)" multiple>
+  </label>
+  <button mat-raised-button class="button is-primary" [disabled]="!selectedFiles" (click)="uploadMulti()">
+    Upload
+  </button>
+
+</mat-card>
+
+<!-- <form ngNoForm>
+  <input id="file" type="file" (change)="upload()">
+</form> -->

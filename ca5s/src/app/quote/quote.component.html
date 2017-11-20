@@ -2,7 +2,7 @@
     <div style="padding:4px;">
         <mat-card>
             <mat-card-title>
-                <span style='color:darkgoldenrod;'>Free Quote</span>
+                <span style='font-size:40px; color:darkgoldenrod;'>Free Quote</span>
             </mat-card-title>
             <mat-card-content>
                 <div>
@@ -12,7 +12,10 @@
                     </mat-radio-group>
                 </div>
                 <app-ctl-service-type [oricategory]="cat"></app-ctl-service-type>
-                <div>
+                <div *ngIf="!isLogin">
+                  <app-ctl-login></app-ctl-login>
+              </div>
+                <div style="padding: 8px;">
                     <router-outlet></router-outlet>
                 </div>
             </mat-card-content>

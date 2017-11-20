@@ -1,3 +1,59 @@
-<p>
-  why works!
-</p>
+<div style="margin: 4px auto; width:90%">
+  <mat-card>
+    <mat-card-content>
+      <h2 class="my-accent">
+        <mat-card> Nobody can beat us on price 20%
+          <mat-icon color="warn">money_off</mat-icon> and quality
+          <mat-icon *ngFor="let i of Arr" color="warn">star</mat-icon> Why?
+        </mat-card>
+      </h2>
+      <mat-card>
+        <h2>
+          <mat-icon color="primary">access_alarm</mat-icon>High Efficiency
+        </h2>
+        <!-- <mat-list-item> -->
+
+        <p>We are busy! That means we pipelined our workload and hired better licensed qualified trades. It improves efficiency
+          dramatically! That's why we provide better job and better deal. It's all trackable. We welcome our customer to
+          check each project.
+          <mat-icon color="accent">mood</mat-icon>
+        </p>
+      </mat-card>
+      <!-- </mat-list-item> -->
+      <h2 class="my-primary">
+        <mat-card>Result = Best PRICE + Best QUALITY + Keeps CHEAPER and BETTER!</mat-card>
+      </h2>
+      <mat-card>
+        <h2>
+          <mat-icon color="warn">assessment</mat-icon>Remote Quote Tool</h2>
+        <!-- <mat-list-item> -->
+
+        <p>Get free quote by fill the simple form. Upload related photos, draws and documents to save contractors time to save
+          your money!
+        </p>
+      </mat-card>
+      <!-- </mat-list-item> -->
+      <h2 class="my-primary">
+        <mat-card>Result = SAVE MONEY from Useless Travel</mat-card>
+      </h2>
+      <mat-card>
+        <h2>
+          <mat-icon color="accent">phonelink_setup</mat-icon>Mobile Management</h2>
+        <!-- <mat-list-item> -->
+
+        <p> Nearby contractors will give bid based on your location information, that will save contractors. You can choose contractor
+          from the bidders.
+        </p>
+      </mat-card>
+      <!-- </mat-list-item> -->
+      <h2 class="my-primary">
+        <mat-card>Result = SAVE MONEY from Management</mat-card>
+      </h2>
+      <!-- </mat-list> -->
+    </mat-card-content>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
+      <button color="primary" [routerLink]="['/quote/false']" mat-raised-button>Free Quote</button>
+      <button color="primary" mat-raised-button>Check Bids</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

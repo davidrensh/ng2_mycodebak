@@ -1,5 +1,5 @@
 <mat-form-field style="width: 240px;">
-    <mat-select placeholder="Service Type" (change)="goto('', category)" [(ngModel)]="category">
+    <mat-select placeholder="Select Service Type" (change)="goto('', category)" [(ngModel)]="category">
         <mat-option *ngFor="let t of categories" [value]="t.route">
             <button style="width:100%" mat-button>{{t.name}}</button>
         </mat-option>

@@ -1,58 +1,56 @@
-<div *ngIf="!isLogin">
-    <app-ctl-login></app-ctl-login>
+<div>
+  <mat-input-container style="width: 300px;">
+    <input matInput required [(ngModel)]="fromAddr" placeholder="From address">
+  </mat-input-container>
+  <mat-checkbox [(ngModel)]="fromApt">From Apartment?</mat-checkbox>
+  <mat-input-container *ngIf="fromApt" style="width: 50px;">
+    <input matInput type="number" [(ngModel)]="fromFloor" placeholder="Floor#">
+  </mat-input-container>
+  <mat-checkbox *ngIf="fromApt">Elevator</mat-checkbox>
 </div>
 <div>
-    <mat-input-container style="width: 300px;">
-        <input matInput required [(ngModel)]="fromAddr" placeholder="From address">
-    </mat-input-container>
-    <mat-checkbox [(ngModel)]="fromApt">From Apartment?</mat-checkbox>
-    <mat-input-container *ngIf="fromApt" style="width: 50px;">
-        <input matInput type="number" [(ngModel)]="fromFloor" placeholder="Floor#">
-    </mat-input-container>
-    <mat-checkbox *ngIf="fromApt">Elevator</mat-checkbox>
-</div>
-<div>
-    <mat-input-container style="width: 300px;">
-        <input matInput required [(ngModel)]="toAddr" (focusout)="loadDistance()" placeholder="To address {{distanceX}}">
-    </mat-input-container>
-    <mat-checkbox [(ngModel)]="toApt">To Apartment? &nbsp; &nbsp;&nbsp;</mat-checkbox>
-    <mat-input-container *ngIf="toApt" style="width: 50px;">
-        <input matInput type="number" [(ngModel)]="toFloor" placeholder="Floor#">
-    </mat-input-container>
-    <mat-checkbox *ngIf="toApt">Elevator</mat-checkbox> <span *ngIf="distance" style="color:darkgreen">({{distance}}km)</span>
+  <mat-input-container style="width: 300px;">
+    <input matInput required [(ngModel)]="toAddr" (focusout)="loadDistance()" placeholder="To address {{distanceX}}">
+  </mat-input-container>
+  <mat-checkbox [(ngModel)]="toApt">To Apartment? &nbsp; &nbsp;&nbsp;</mat-checkbox>
+  <mat-input-container *ngIf="toApt" style="width: 50px;">
+    <input matInput type="number" [(ngModel)]="toFloor" placeholder="Floor#">
+  </mat-input-container>
+  <mat-checkbox *ngIf="toApt">Elevator</mat-checkbox>
+  <span *ngIf="distance" style="color:darkgreen">({{distance}}km)</span>
 </div>
 <mat-input-container style="width: 160px;">
-    <input matInput type="number" [(ngModel)]="smallItems" placeholder="Regular items amount">
+  <input matInput type="number" [(ngModel)]="smallItems" placeholder="Regular items amount">
 </mat-input-container>
 <mat-input-container style="width: 160px;">
-    <input matInput type="number" [(ngModel)]="bigItems" placeholder="Two labors items(Sofa..)">
-</mat-input-container> (Total:{{(smallItems ? smallItems : 0) + (bigItems ? bigItems : 0)}}) items
+  <input matInput type="number" [(ngModel)]="bigItems" placeholder="Two labors items(Sofa..)">
+</mat-input-container> (Total:{{(smallItems ? smallItems : 0) + (bigItems ? bigItems : 0)}} items)
 <div>
-    <mat-checkbox>Packing services required?</mat-checkbox>
-    <mat-checkbox>Packing materials required (e.g. boxes)?</mat-checkbox>
+  <mat-checkbox>Packing services required?</mat-checkbox>
+  <mat-checkbox>Packing materials required (e.g. boxes)?</mat-checkbox>
 </div>
 <mat-checkbox>Dismantle / reassemble items?</mat-checkbox>
 <div>
-    <mat-checkbox>Storage required? &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</mat-checkbox>
-    <mat-checkbox>Transportation of vehicle required?</mat-checkbox>
+  <mat-checkbox>Storage required? &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</mat-checkbox>
+  <mat-checkbox>Transportation of vehicle required?</mat-checkbox>
 </div>
 <mat-form-field>
-    <textarea matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" matInput placeholder="Access / Parking restrictions:"></textarea>
+  <textarea matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" matInput placeholder="Access / Parking restrictions:"></textarea>
 </mat-form-field>
 <mat-form-field>
-    <textarea matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" matInput placeholder="Other information:"></textarea>
+  <textarea matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" matInput placeholder="Other information / Comment:"></textarea>
 </mat-form-field>
 <div>
-    <mat-form-field>
-        <input [min]="minDate" matInput [matDatepicker]="movingDate" placeholder="Moving date">
-        <mat-datepicker-toggle matSuffix [for]="movingDate"></mat-datepicker-toggle>
-        <mat-datepicker #movingDate></mat-datepicker>
-    </mat-form-field>
-    <mat-checkbox>Solid Date?</mat-checkbox>
+  <mat-form-field>
+    <input [min]="minDate" matInput [matDatepicker]="movingDate" placeholder="Moving date">
+    <mat-datepicker-toggle matSuffix [for]="movingDate"></mat-datepicker-toggle>
+    <mat-datepicker #movingDate></mat-datepicker>&nbsp;&nbsp;&ngsp;
+  </mat-form-field>
+  &nbsp;&nbsp;&ngsp;<mat-checkbox>Solid Date?</mat-checkbox>
 </div>
 <div fxLayout="column" fxLayoutAlign="start center">
-    <br>
-    <button color="primary" mat-raised-button (click)="submit()">Get Mover's Bid</button>
+  <br>
+  <button color="primary" mat-raised-button (click)="submit()">Get Mover's Bid</button>
 </div>
 
 <!-- </form> -->

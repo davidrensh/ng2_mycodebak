@@ -77,7 +77,7 @@ import { WeldingComponent } from "./welding/welding.component";
 import { RenovationsComponent } from "./renovations/renovations.component";
 import { PaintersComponent } from "./painters/painters.component";
 import { LawnComponent } from "./lawn/lawn.component";
-import { EavestoughComponent } from "./eavestough/eavestough.component";
+import { EavestroughComponent } from "./eavestrough/eavestrough.component";
 import { ConcreteComponent } from "./concrete/concrete.component";
 import { SnowComponent } from "./snow/snow.component";
 import { PlumbingComponent } from "./plumbing/plumbing.component";
@@ -99,6 +99,7 @@ import { ComputerComponent } from "./computer/computer.component";
 import { SoftwareComponent } from "./software/software.component";
 import { CarpetComponent } from "./carpet/carpet.component";
 import { CleaningComponent } from "./cleaning/cleaning.component";
+import { CtlUploadImgComponent } from './ctl-upload-img/ctl-upload-img.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC1zAJYEaJzMTiqJTei2NI282yuJOENc_M",
@@ -139,7 +140,7 @@ export const firebaseConfig = {
     RenovationsComponent,
     PaintersComponent,
     LawnComponent,
-    EavestoughComponent,
+    EavestroughComponent,
     ConcreteComponent,
     SnowComponent,
     PlumbingComponent,
@@ -160,7 +161,8 @@ export const firebaseConfig = {
     SoftwareComponent,
     CarpetComponent,
     CleaningComponent,
-    ExcavationComponent
+    ExcavationComponent,
+    CtlUploadImgComponent
   ],
   imports: [
     AngularFireDatabaseModule,

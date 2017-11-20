@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class QuoteComponent implements OnInit {
   isCommercial = null;
+  isLogin = false;
   // firstFormGroup: FormGroup;
   // secondFormGroup: FormGroup;
   // readonly provinces = PROVINCES;

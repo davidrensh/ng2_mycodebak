@@ -1,31 +1,36 @@
 <mat-tab-group>
-    <mat-tab label="Google 'bad contractors' before any action, otherwise “…took my money and ran”">
-    </mat-tab>
-    <mat-tab label="Why CA5S？Protect your money, ensure your project quality, lower your risk!">
-    </mat-tab>
-    <mat-tab label="Our QualityBest process is your only choice: Quote, Bid, Execute with Schedule, and Testimony with rating.">
-    </mat-tab>
-    <mat-tab label="Customer is vulnerable, NOT because contractors cheating, just for lack of knowledge!">
-    </mat-tab>
+  <mat-tab label="Nobody can beat us on price and quality">
+  </mat-tab>
+  <mat-tab label="Google 'bad contractors' before any action, …took my money and ran">
+  </mat-tab>
+  <mat-tab label="Why CA5S？Protect your money, ensure your project quality, lower your risk!">
+  </mat-tab>
+  <mat-tab label="Our QualityBest process is your only choice: Quote, Bid, Execute with Schedule, and Testimony with rating.">
+  </mat-tab>
+  <mat-tab label="Customer is vulnerable, NOT because contractors cheating, just for lack of knowledge!">
+  </mat-tab>
 </mat-tab-group>
 <mat-vertical-stepper>
-    <mat-step>
-        <div style="margin: 2px;" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
-            <ng-template matStepLabel>
-                <span matTooltip="Fill quote form">Quote by Bid</span>
-            </ng-template>
-            <mat-card>
-                <mat-card-content>
-                    Get free quote by fill the simple form. Upload related photos, draws and documents to save contractors time to save your money! <br> Nearby contractors will give bid based on your information. You can choose contractor from the bidders.
-                </mat-card-content>
-                <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
-                    <button color="primary" [routerLink]="['/quote/false']" mat-raised-button>Free Quote</button>
-                    <button color="primary" mat-raised-button>Check Bids</button>
-                </mat-card-actions>
-            </mat-card>
-        </div>
-    </mat-step>
-    <!-- <mat-step>
+  <mat-step>
+    <div style="margin: 2px;" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
+      <ng-template matStepLabel>
+        <span [ngStyle]="{'font-size': '26px'}" matTooltip="Fill quote form">Quote by Bid</span>
+      </ng-template>
+      <mat-card>
+        <mat-card-content>
+         <div [ngStyle]="{'font-size': '24px'}"> Get free quote by fill the simple form. Upload related photos, draws and documents to save contractors time to save your
+          money!
+          <br> Nearby contractors will give bid based on your information. You can choose contractor from the bidders.
+         </div>        
+        </mat-card-content>
+        <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
+          <button color="primary" [routerLink]="['/quote/false']" mat-raised-button>Free Quote</button>
+          <button color="primary" mat-raised-button>Check Bids</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-step>
+  <!-- <mat-step>
         <div style="margin: 2px;" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
             <ng-template matStepLabel>
                 <span matTooltip="Contractors bid">Bid</span>
@@ -40,35 +45,37 @@
             </mat-card>
         </div>
     </mat-step> -->
-    <mat-step>
-        <div style="margin: 2px;" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
+  <mat-step>
+    <div style="margin: 2px;" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
 
-            <ng-template matStepLabel>
-                <span matTooltip="Execute project">Execute with Schedule</span>
-            </ng-template>
-            <mat-card>
-                <mat-card-content>
-                    The project will start with scheduling process after signed an e-Contract. It will be monitered all the way to the end, and it will include budget and payment arrangement as well.
-                </mat-card-content>
-                <mat-card-actions fxLayout="column" fxLayoutAlign="start center">
-                    <button color="primary" mat-raised-button>Track My Project</button>
-                </mat-card-actions>
-            </mat-card>
+      <ng-template matStepLabel>
+        <span [ngStyle]="{'font-size': '26px'}" matTooltip="Execute project">Execute with Schedule</span>
+      </ng-template>
+      <mat-card>
+        <mat-card-content><div [ngStyle]="{'font-size': '24px' }">
+          The project will start with scheduling process after signed an e-Contract. It will be monitered all the way to the end, and
+          it will include budget and payment arrangement as well.</div>
+        </mat-card-content>
+        <mat-card-actions fxLayout="column" fxLayoutAlign="start center">
+          <button color="primary" mat-raised-button>Track My Project</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-step>
+  <mat-step>
+    <div style="margin: 2px;" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
+      <ng-template matStepLabel>
+        <span [ngStyle]="{'font-size': '26px'}" matTooltip="Pay and rate">Testimony with Rating</span>
+      </ng-template>
+      <mat-card>
+        <mat-card-content><div [ngStyle]="{'font-size': '24px' }">
+          Review the project is not only for you. It's for everybody. Give proper stars to the contractor is fair!
         </div>
-    </mat-step>
-    <mat-step>
-        <div style="margin: 2px;" fxFlexAlign="center" fxLayout="column" fxLayoutAlign="center center">
-            <ng-template matStepLabel>
-                <span matTooltip="Pay and rate">Testimony with Rating</span>
-            </ng-template>
-            <mat-card>
-                <mat-card-content>
-                    Review the project is not only for you. It's for everybody. Give proper stars to the contractor is fair!
-                </mat-card-content>
-                <mat-card-actions fxLayout="column" fxLayoutAlign="start center">
-                    <button color="primary" mat-raised-button>Finalize My Project</button>
-                </mat-card-actions>
-            </mat-card>
-        </div>
-    </mat-step>
+        </mat-card-content>
+        <mat-card-actions fxLayout="column" fxLayoutAlign="start center">
+          <button color="primary" mat-raised-button>Finalize My Project</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-step>
 </mat-vertical-stepper>

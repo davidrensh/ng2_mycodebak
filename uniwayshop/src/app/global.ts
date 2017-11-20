@@ -45,7 +45,7 @@ export const CATEGORIES = [
   { route: "Renovations", name: "Renovations" },
   { route: "Painters", name: "Painters" },
   { route: "Lawn", name: "Lawn & Tree" },
-  { route: "Eavestough", name: "Eavestough" },
+  { route: "Eavestrough", name: "Eavestrough" },
   { route: "Concrete", name: "Concrete, Brick & Masonry" },
   { route: "Snow", name: "Snow Removal" },
   { route: "Plumbing", name: "Plumbing" },

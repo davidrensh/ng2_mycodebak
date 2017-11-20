@@ -25,7 +25,7 @@ import { WeldingComponent } from "./welding/welding.component";
 import { RenovationsComponent } from "./renovations/renovations.component";
 import { PaintersComponent } from "./painters/painters.component";
 import { LawnComponent } from "./lawn/lawn.component";
-import { EavestoughComponent } from "./eavestough/eavestough.component";
+import { EavestroughComponent } from "./eavestrough/eavestrough.component";
 import { ConcreteComponent } from "./concrete/concrete.component";
 import { SnowComponent } from "./snow/snow.component";
 import { PlumbingComponent } from "./plumbing/plumbing.component";
@@ -64,7 +64,7 @@ const routes: Routes = [
       { path: "Renovations", component: RenovationsComponent },
       { path: "Painters", component: PaintersComponent },
       { path: "Lawn", component: LawnComponent },
-      { path: "Eavestough", component: EavestoughComponent },
+      { path: "Eavestrough", component: EavestroughComponent },
       { path: "Concrete", component: ConcreteComponent },
       { path: "Snow", component: SnowComponent },
       { path: "Plumbing", component: PlumbingComponent },

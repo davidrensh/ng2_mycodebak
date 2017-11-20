@@ -15,12 +15,12 @@ declare var google: any;
 })
 export class MovingComponent implements OnInit {
   fromApt = false;
-  fromAddr = "";
-  toAddr = "";
+  fromAddr = '';
+  toAddr = '';
   fromPos: any;
   toPos: any;
   toApt = false;
-  isLogin = false;
+
   hasContact = false;
   minDate: any;
   fgMoving: FormGroup;
@@ -28,8 +28,10 @@ export class MovingComponent implements OnInit {
   smallItems = 0;
   bigItems = 0;
   totalItems = 0;
-  distance = "";
-  distanceX = "";
+  distance = '';
+  distanceX = '';
+  fromFloor: string;
+  toFloor: string;
   constructor(fb: FormBuilder) {
     this.minDate = this.setDateWithVar(new Date(), 1);
     this.fgMoving = fb.group(
@@ -88,7 +90,7 @@ export class MovingComponent implements OnInit {
       lat2: lat2,
       lng2: lng2
     });
-    this.distanceX = '(' + this.distance + 'km)';
+    this.distanceX = "(" + this.distance + "km)";
   }
   submit() {
     console.log("UUUU");
