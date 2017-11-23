@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import * as firebase from "firebase";
 import { Observable } from "rxjs/Observable";
@@ -9,7 +9,8 @@ import * as _ from "lodash";
   styleUrls: ["./ctl-upload-img.component.scss"]
 })
 export class CtlUploadImgComponent implements OnInit {
-  basePath = "uploads";
+  @Input() nodeid: any;
+  basePath = "";
   uploadsRef: any;
   uploads: any;
   showProgress = false;
@@ -19,15 +20,17 @@ export class CtlUploadImgComponent implements OnInit {
 
   constructor(private db: AngularFireDatabase) {}
   ngOnInit() {
+    this.basePath = this.nodeid;
+    // console.log('333=', this.basePath);
     this.uploads = this.getUploads();
-    this.uploads.subscribe(() => (this.showProgress = false));
+    // this.uploads.subscribe(() => (this.showProgress = false));
   }
   detectFiles(event) {
     this.selectedFiles = event.target.files;
   }
 
   uploadSingle() {
-    let file = this.selectedFiles.item(0);
+    const file = this.selectedFiles.item(0);
     this.currentUpload = { file: file };
     this.pushUpload(this.currentUpload);
   }
@@ -52,6 +55,7 @@ export class CtlUploadImgComponent implements OnInit {
         return actions.map(a => {
           const data = a.payload.val();
           const $key = a.payload.key;
+          // console.log($key);
           return { $key, ...data };
         });
       });
@@ -59,13 +63,29 @@ export class CtlUploadImgComponent implements OnInit {
   }
 
   deleteUpload(upload: any) {
+    // console.log("aaa=", upload.$key);
     this.deleteFileData(upload.$key)
       .then(() => {
         this.deleteFileStorage(upload.name);
       })
       .catch(error => console.log(error));
   }
+  deleteAll() {
+    // // console.log("delete all", this.basePath);
 
+    this.db
+      .list(this.basePath)
+      .valueChanges()
+      .subscribe(p => {
+        p.forEach(k => {
+          // console.log("delete all", k,k.name);
+          this.deleteFileStorage(k.name);
+        });
+      });
+    this.uploads.forEach(u => {
+      this.deleteFileData(u.$key);
+    });
+  }
   // Executes the file uploading to firebase https://firebase.google.com/docs/storage/web/upload-files
   pushUpload(upload: any) {
     const storageRef = firebase.storage().ref();
@@ -108,7 +128,14 @@ export class CtlUploadImgComponent implements OnInit {
   // So the name serves as a unique key
   private deleteFileStorage(name: string) {
     const storageRef = firebase.storage().ref();
-    storageRef.child(`${this.basePath}/${name}`).delete();
+    storageRef
+      .child(`${this.basePath}/${name}`)
+      .delete()
+      .then(() => {})
+      .catch(function(error) {
+        // console.log("!!!!=", error);
+        // Uh-oh, an error occurred!
+      });
   }
 }
 //   constructor() { }

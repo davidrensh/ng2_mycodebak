@@ -1,17 +1,25 @@
 <mat-input-container style="width:120px">
-    <input matInput required [(ngModel)]="phone" name="phone" placeholder="Phone Number">
+  <input matInput required [(ngModel)]="phone" name="phone" placeholder="Phone Number">
 </mat-input-container>
 <mat-input-container style="width:120px">
-    <input matInput required (keyup.enter)="login()" type="password" [(ngModel)]="password" name="password" placeholder="Password">
+  <input matInput required (keyup.enter)="login()" type="password" [(ngModel)]="password" name="password" placeholder="Password">
 </mat-input-container>
+<!-- <div fxLayout="row" fxLayoutAlign="center center">
+  <span *ngIf='errmsg' [style.color]="'red'"> {{errmsg}}</span>
+
+</div> -->
+
 <div *ngIf="needFill">
-    <mat-input-container style="width:120px">
-        <input matInput [(ngModel)]="fname" name="fname" placeholder="First Name">
-    </mat-input-container>
-    <mat-input-container style="width:120px">
-        <input matInput [(ngModel)]="lname" name="lname" placeholder="Last Name">
-    </mat-input-container>
-    <mat-input-container style="width:120px">
-        <input matInput [(ngModel)]="email" name="email" placeholder="Email">
-    </mat-input-container>
+  <mat-input-container style="width:120px">
+    <input matInput [(ngModel)]="fname" name="fname" placeholder="First Name">
+  </mat-input-container>
+  <mat-input-container style="width:120px">
+    <input matInput [(ngModel)]="lname" name="lname" placeholder="Last Name">
+  </mat-input-container>
+  <mat-input-container style="width:120px">
+    <input matInput [(ngModel)]="email" name="email" placeholder="Email">
+  </mat-input-container>
 </div>
+<button *ngIf="!needFill" color="primary" mat-raised-button (click)="login()">Login</button>
+<button *ngIf="!!needFill" color="primary" mat-raised-button (click)="verify()">Sign in</button>
+<button mat-button (click)="forget()">Forget password?</button>

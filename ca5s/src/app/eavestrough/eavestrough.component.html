@@ -1,3 +1,37 @@
-<p>
-  eavestrough works!
-</p>
+<div>
+  <mat-input-container style="width: 300px;">
+    <input matInput required [(ngModel)]="fromAddr" placeholder="Address">
+  </mat-input-container>
+  <mat-checkbox>Elevator</mat-checkbox>
+</div>
+
+<mat-input-container style="width: 160px;">
+  <input matInput type="number" [(ngModel)]="lenNS" placeholder="North/South length feet">
+</mat-input-container>
+<mat-input-container style="width: 160px;">
+  <input matInput type="number" [(ngModel)]="lenWE" placeholder="West/East length feet">
+</mat-input-container>&nbsp;&nbsp; (Total:{{(lenNS ? lenNS : 0) * 2 + (lenWE ? lenWE : 0) * 2}} ft.)
+<div>
+  <mat-form-field>
+    <textarea matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" matInput placeholder="Access / Parking restrictions:"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" matInput placeholder="Other information / Comment:"></textarea>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <input [min]="minDate" matInput [matDatepicker]="startDate" placeholder="Start date">
+    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+    <mat-datepicker #startDate></mat-datepicker>&nbsp;&nbsp;&ngsp;
+  </mat-form-field>
+  &nbsp;&nbsp;&ngsp;
+  <mat-checkbox>Solid Date?</mat-checkbox>
+</div>
+<app-ctl-upload-img #loadImage [nodeid]="nodeid"></app-ctl-upload-img>
+<div fxLayout="column" fxLayoutAlign="start center">
+  <br>
+  <button color="primary" mat-raised-button (click)="submit()">Get Roofer's Bid</button>
+</div>
+
+<!-- </form> -->

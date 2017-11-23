@@ -32,7 +32,7 @@
   </mat-form-field>
   &nbsp;&nbsp;&ngsp;<mat-checkbox>Solid Date?</mat-checkbox>
 </div>
-<app-ctl-upload-img></app-ctl-upload-img>
+<app-ctl-upload-img #loadImage [nodeid]="nodeid"></app-ctl-upload-img>
 <div fxLayout="column" fxLayoutAlign="start center">
   <br>
   <button color="primary" mat-raised-button (click)="submit()">Get Roofer's Bid</button>

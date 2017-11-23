@@ -18,7 +18,7 @@ export class ServicesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {}
   goto(r) {
     this.router.navigate(["/quote/false/" + r]);
-    console.log(r);
+    // console.log(r);
     // this.router.navigate(["./" + r], { relativeTo: this.route });
   }
   ngOnInit() {}

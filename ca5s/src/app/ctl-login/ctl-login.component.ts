@@ -9,9 +9,18 @@ export class CtlLoginComponent implements OnInit {
   needFill = false;
   phone = "";
   password = "";
-
+  fname = "";
+  lname = "";
+  email = "";
+  errmsg='';
   constructor() {}
 
   ngOnInit() {}
   login() {}
+  verify(){
+
+  }
+  forget(){
+
+  }
 }

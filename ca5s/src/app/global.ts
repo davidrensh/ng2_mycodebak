@@ -22,6 +22,66 @@ export const DISTANCE = function distanceFrom(points) {
 export const COMAPRE = function comp(a, b, isAsc) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 };
+
+export const GUID = function genGUID() {
+  if (
+    typeof window !== "undefined" &&
+    typeof window.crypto !== "undefined" &&
+    typeof window.crypto.getRandomValues !== "undefined"
+  ) {
+    // If we have a cryptographically secure PRNG, use that
+    // http://stackoverflow.com/questions/6906916/collisions-when-generating-uuids-in-javascript
+    let buf: Uint16Array = new Uint16Array(8);
+    window.crypto.getRandomValues(buf);
+    return (
+      pad4(buf[0]) +
+      pad4(buf[1]) +
+      "-" +
+      pad4(buf[2]) +
+      "-" +
+      pad4(buf[3]) +
+      "-" +
+      pad4(buf[4]) +
+      "-" +
+      pad4(buf[5]) +
+      pad4(buf[6]) +
+      pad4(buf[7])
+    );
+  } else {
+    // Otherwise, just use Math.random
+    // https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+    // https://stackoverflow.com/questions/11605068/why-does-jshint-argue-against-bitwise-operators-how-should-i-express-this-code
+    return (
+      random4() +
+      random4() +
+      "-" +
+      random4() +
+      "-" +
+      random4() +
+      "-" +
+      random4() +
+      "-" +
+      random4() +
+      random4() +
+      random4()
+    );
+  }
+};
+
+const pad4 = (num: number): string => {
+  let ret: string = num.toString(16);
+  while (ret.length < 4) {
+      ret = "0" + ret;
+  }
+  return ret;
+}
+
+const random4 = (): string => {
+  return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+}
+
 export const PROVINCES = [
   { a: "AB", name: "ALBERTA" },
   { a: "BC", name: "BRITISH COLUMBIA" },
@@ -41,32 +101,32 @@ export const PROVINCES = [
 export const CATEGORIES = [
   { route: "Roofing", name: "Roofing" },
   { route: "Moving", name: "Moving" },
-  { route: "Welding", name: "Welding" },
+  // { route: "Welding", name: "Welding" },
   { route: "Renovations", name: "Renovations" },
-  { route: "Painters", name: "Painters" },
-  { route: "Lawn", name: "Lawn & Tree" },
+  // { route: "Painters", name: "Painters" },
+  // { route: "Lawn", name: "Lawn & Tree" },
   { route: "Eavestrough", name: "Eavestrough" },
-  { route: "Concrete", name: "Concrete, Brick & Masonry" },
-  { route: "Snow", name: "Snow Removal" },
-  { route: "Plumbing", name: "Plumbing" },
-  { route: "Fence", name: "Fence, Deck, Siding & Railing" },
-  { route: "Electrician", name: "Electrician" },
-  { route: "Flooring", name: "Flooring" },
-  { route: "Drywall", name: "Drywall & Stucco" },
-  { route: "Heating", name: "Heating, Ventilation & AC" },
-  { route: "Excavation", name: "Excavation & Demolition" },
-  { route: "Windows", name: "Windows & Doors" },
-  { route: "Appliance", name: "Appliance Repair & Install" },
-  { route: "Paving", name: "Paving, Driveways & Interlock" },
-  { route: "Garage", name: "Garage Door" },
-  { route: "Insulation", name: "Insulation" },
-  { route: "Septic", name: "Septic" },
-  { route: "Water", name: "Water Well" },
-  { route: "Surveillance", name: "Surveillance" },
-  { route: "Computer", name: "Computer Repair" },
-  { route: "Software", name: "Software" },
-  { route: "Carpet", name: "Carpet" },
-  { route: "Cleaning", name: "Cleaning" }
+  // { route: "Concrete", name: "Concrete, Brick & Masonry" },
+  // { route: "Snow", name: "Snow Removal" },
+  // { route: "Plumbing", name: "Plumbing" },
+  // { route: "Fence", name: "Fence, Deck, Siding & Railing" },
+  // { route: "Electrician", name: "Electrician" },
+  // { route: "Flooring", name: "Flooring" },
+  // { route: "Drywall", name: "Drywall & Stucco" },
+  // { route: "Heating", name: "Heating, Ventilation & AC" },
+  // { route: "Excavation", name: "Excavation & Demolition" },
+  // { route: "Windows", name: "Windows & Doors" },
+  // { route: "Appliance", name: "Appliance Repair & Install" },
+  // { route: "Paving", name: "Paving, Driveways & Interlock" },
+  // { route: "Garage", name: "Garage Door" },
+  // { route: "Insulation", name: "Insulation" },
+  // { route: "Septic", name: "Septic" },
+  // { route: "Water", name: "Water Well" },
+  // { route: "Surveillance", name: "Surveillance" },
+  // { route: "Computer", name: "Computer Repair" },
+  // { route: "Software", name: "Software" },
+  // { route: "Carpet", name: "Carpet" },
+  // { route: "Cleaning", name: "Cleaning" }
 ];
 
 export const transTypes = [

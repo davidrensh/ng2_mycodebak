@@ -1,3 +1,186 @@
-<p>
-  renovations works!
-</p>
+<div>
+  <mat-input-container style="width: 300px;">
+    <input matInput required [(ngModel)]="fromAddr" placeholder="Address">
+  </mat-input-container>
+  <mat-checkbox>Elevator</mat-checkbox>
+</div>
+<br/>
+<div fxLayout="row" fxLayoutAlign="center start" fxShow fxHide.xs="true" fxHide.sm="true">
+  <table>
+    <tbody style="height:260px">
+      <tr>
+        <td class="s">Room Type
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </td>
+        <td class="s">Renovation Type
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </td>
+        <td class="s">Width
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </td>
+        <td class="s">Length
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </td>
+        <td class="s">Height
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </td>
+        <td class="s">Requirments (i.e. material)
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field>
+            <mat-select placeholder="Room Type" name="rv" [(ngModel)]="roomType">
+              <mat-option *ngFor="let rv of roomTypes" [value]="rv.value">
+                {{rv.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-select placeholder="Renovation Type" [(ngModel)]="renoSelected" multiple>
+              <mat-option *ngFor="let renoSelected of renoTypes" [value]="renoSelected">{{renoSelected}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-input-container>
+            <input matInput type="number" [(ngModel)]="width" placeholder="Width (WE)">
+          </mat-input-container>
+        </td>
+        <td>
+          <mat-input-container>
+            <input matInput type="number" [(ngModel)]="length" placeholder="Length (NS)">
+          </mat-input-container>
+        </td>
+        <td>
+          <mat-input-container>
+            <input matInput type="number" [(ngModel)]="height" placeholder="Height">
+          </mat-input-container>
+        </td>
+        <!-- <td class="s" contenteditable [ceDefault]="''" [ceModel]="password" (ceChange)="password=$event"></td> -->
+        <td>
+          <mat-input-container>
+            <input matInput [(ngModel)]="req" placeholder="Requirments">
+          </mat-input-container>
+        </td>
+        <td>
+          <mat-icon *ngIf="validInput()" mdTooltip="Fill and add this record" (click)="addRow($event)" style="color:green;">add</mat-icon>
+        </td>
+      </tr>
+      <tr *ngFor="let o of data">
+        <td>
+          <mat-select (change)="leave($event,o,'typeID')" placeholder="" name="drt" [(ngModel)]="o.typeID">
+            <mat-option *ngFor="let vv of roomTypes" [value]="vv.value">
+              {{vv.value}}
+            </mat-option>
+          </mat-select>
+        </td>
+        <td>
+          <mat-select (change)="leave($event,o,'renoSelected')" placeholder="" name="drnt" [(ngModel)]="o.renoSelected" multiple>
+            <mat-option *ngFor="let rt4 of renoTypes" [value]="rt4">{{rt4}}</mat-option>
+          </mat-select>
+        </td>
+        <td class="s">
+          <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'width')">{{o.width}}</span>
+        </td>
+        <td class="s">
+          <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'length')">{{o.length}}</span>
+        </td>
+        <td class="s">
+          <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'height')">{{o.height}}</span>
+        </td>
+        <td class="s">
+          <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'req')">{{o.req}}</span>
+        </td>
+        <td>
+          <mat-icon mdTooltip="Delete this record" style="color:red;" (click)="delete(o)">clear</mat-icon>
+        </td>
+      </tr>
+      <tr>Total:{{getTotal()}} sqft.</tr>
+    </tbody>
+  </table>
+</div>
+<div fxLayout="row" fxLayoutAlign="center start" fxHide.xl="true" fxHide.lg="true" fxHide.md="true">
+  <table>
+    <tbody style="height:260px">
+      <tr>
+        <td>
+          <mat-form-field>
+            <mat-select placeholder="Room Type" name="selRT" [(ngModel)]="roomType">
+              <mat-option *ngFor="let rv of roomTypes" [value]="rv.value">
+                {{rv.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Renovation Type" name="selrnt" [(ngModel)]="renoSelected" multiple>
+              <mat-option *ngFor="let rt2 of renoTypes" [value]="rt2">{{rt2}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-input-container>
+            <input matInput type="number" [(ngModel)]="width" placeholder="Width (WE)">
+          </mat-input-container>
+          <mat-input-container>
+            <input matInput type="number" [(ngModel)]="length" placeholder="Length (NS)">
+          </mat-input-container>
+          <mat-input-container>
+            <input matInput type="number" [(ngModel)]="height" placeholder="Height">
+          </mat-input-container>
+          <mat-input-container>
+            <input matInput [(ngModel)]="req" placeholder="Requirments">
+          </mat-input-container>
+          <mat-icon *ngIf="validInput()" mdTooltip="Fill and add this record" (click)="addRow($event)" style="color:green;">add</mat-icon>
+        </td>
+      </tr>
+      <tr *ngFor="let o of data">
+        <td>
+          <mat-select (change)="leave($event,o,'typeID')" placeholder="" name="drt" [(ngModel)]="o.typeID">
+            <mat-option *ngFor="let vv of roomTypes" [value]="vv.value">
+              {{vv.value}}
+            </mat-option>
+          </mat-select>
+          <mat-select (change)="leave($event,o,'renoSelected')" placeholder="" name="drnt" [(ngModel)]="o.renoSelected" multiple>
+            <mat-option *ngFor="let rt2 of renoTypes" [value]="rt2">{{rt2}}</mat-option>
+          </mat-select>
+          <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'width')">{{o.width}}</span>
+          <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'length')">{{o.length}}</span>
+          <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'height')">{{o.height}}</span>
+          <span contenteditable (focus)="onFocus($event)" (focusout)="leave($event,o,'req')">{{o.req}}</span>
+          <mat-icon mdTooltip="Delete this record" style="color:red;" (click)="delete(o)">clear</mat-icon>
+        </td>
+      </tr>
+      <tr>Total:{{getTotal()}} sqft.</tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <mat-checkbox [(ngModel)]="matReq">Material required?</mat-checkbox>
+</div>
+
+<mat-form-field>
+  <textarea matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" matInput placeholder="Access/ Parking restrictions:"></textarea>
+</mat-form-field>
+<mat-form-field>
+  <textarea matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" matInput placeholder="Comment:"></textarea>
+</mat-form-field>
+
+<div>
+  <mat-form-field>
+    <input [min]="minDate" matInput [matDatepicker]="startDate" placeholder="Start date">
+    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+    <mat-datepicker #startDate></mat-datepicker>&nbsp;&nbsp;&ngsp;
+  </mat-form-field>
+  &nbsp;&nbsp;&ngsp;
+  <mat-checkbox>Solid Date?</mat-checkbox>
+</div>
+<app-ctl-upload-img #loadImage [nodeid]="nodeid"></app-ctl-upload-img>
+<div fxLayout="column" fxLayoutAlign="start center">
+  <br>
+  <button color="primary" mat-raised-button (click)="submit()">Get Renovator's Bid</button>
+</div>
+
+<!-- </form>getTotal() -->
